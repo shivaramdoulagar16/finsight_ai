@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinSight AI — Personal Finance Intelligence</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0d14;
+  --bg2: #0f1420;
+  --bg3: #141927;
+  --card: #161d2e;
+  --card2: #1c2438;
+  --border: #1e2d47;
+  --border2: #243450;
+  --text: #e8edf8;
+  --text2: #8a9bbf;
+  --text3: #5a6a8a;
+  --accent: #3d7fff;
+  --accent2: #00d4aa;
+  --accent3: #f59e0b;
+  --accent4: #ef4444;
+  --accent5: #a855f7;
+  --green: #22c55e;
+  --red: #ef4444;
+  --yellow: #f59e0b;
+  --purple: #a855f7;
+  --glow: rgba(61,127,255,0.15);
+  --radius: 16px;
+  --shadow: 0 4px 32px rgba(0,0,0,0.4);
+}
+[data-theme="light"] {
+  --bg: #f0f4ff;
+  --bg2: #e8edf8;
+  --bg3: #dde4f5;
+  --card: #ffffff;
+  --card2: #f5f8ff;
+  --border: #d0daf0;
+  --border2: #c0cce8;
+  --text: #0a1628;
+  --text2: #3d5278;
+  --text3: #7a8db0;
+  --glow: rgba(61,127,255,0.08);
+  --shadow: 0 4px 32px rgba(61,127,255,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+}
+h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* ── LAYOUT ── */
+.app { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 240px; min-height: 100vh; background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  position: fixed; left: 0; top: 0; bottom: 0; z-index: 100;
+  transition: transform 0.3s;
+}
+.main { margin-left: 240px; flex: 1; min-height: 100vh; }
+
+/* ── SIDEBAR ── */
+.sidebar-logo {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.logo-mark {
+  display: flex; align-items: center; gap: 10px;
+}
+.logo-icon {
+  width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: white; font-weight: 800; font-family: 'Syne',sans-serif;
+}
+.logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; }
+.logo-text span { color: var(--accent); }
+.logo-sub { font-size: 10px; color: var(--text3); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+
+.sidebar-nav { padding: 16px 12px; flex: 1; overflow-y: auto; }
+.nav-section-title {
+  font-size: 10px; color: var(--text3); letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 8px 8px 4px; margin-top: 8px;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 10px; cursor: pointer;
+  transition: all 0.2s; color: var(--text2); font-size: 14px;
+  font-weight: 500; margin-bottom: 2px; user-select: none;
+}
+.nav-item:hover { background: var(--card); color: var(--text); }
+.nav-item.active { background: linear-gradient(135deg, rgba(61,127,255,0.15), rgba(0,212,170,0.08)); color: var(--accent); border: 1px solid rgba(61,127,255,0.2); }
+.nav-icon { width: 18px; text-align: center; font-size: 16px; }
+.nav-badge {
+  margin-left: auto; background: var(--accent4); color: white;
+  font-size: 10px; padding: 1px 6px; border-radius: 20px; font-weight: 600;
+}
+
+.sidebar-footer {
+  padding: 16px 12px; border-top: 1px solid var(--border);
+}
+.user-card {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; background: var(--card); border-radius: 10px;
+  cursor: pointer; transition: background 0.2s;
+}
+.user-avatar {
+  width: 32px; height: 32px; background: linear-gradient(135deg, #f59e0b, #ef4444);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px; color: white; font-family: 'Syne',sans-serif;
+}
+.user-name { font-size: 13px; font-weight: 600; }
+.user-plan { font-size: 11px; color: var(--accent2); }
+
+/* ── TOP BAR ── */
+.topbar {
+  height: 64px; background: var(--bg2); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 0 28px; gap: 16px;
+  position: sticky; top: 0; z-index: 50;
+}
+.topbar-title { font-family: 'Syne',sans-serif; font-weight: 700; font-size: 20px; flex: 1; }
+.topbar-subtitle { font-size: 12px; color: var(--text3); font-family: 'DM Sans',sans-serif; font-weight: 400; display: block; }
+.topbar-actions { display: flex; align-items: center; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 8px; border: none;
+  cursor: pointer; font-family: 'DM Sans',sans-serif; font-size: 13px;
+  font-weight: 600; transition: all 0.2s; letter-spacing: 0.3px;
+}
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: #5590ff; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(61,127,255,0.4); }
+.btn-ghost { background: var(--card); color: var(--text2); border: 1px solid var(--border); }
+.btn-ghost:hover { background: var(--card2); color: var(--text); }
+.icon-btn {
+  width: 36px; height: 36px; border-radius: 8px; background: var(--card);
+  border: 1px solid var(--border); display: flex; align-items: center;
+  justify-content: center; cursor: pointer; transition: all 0.2s; font-size: 16px;
+}
+.icon-btn:hover { background: var(--card2); }
+
+/* ── PAGES ── */
+.page { display: none; padding: 28px; animation: fadeIn 0.3s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── CARDS ── */
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow);
+}
+.card-sm { padding: 16px; border-radius: 12px; }
+.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.card-title { font-family: 'Syne',sans-serif; font-weight: 700; font-size: 15px; }
+.card-subtitle { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+/* ── GRID ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+
+/* ── STAT CARDS ── */
+.stat-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px; position: relative; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(0,0,0,0.3); }
+.stat-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.stat-card.blue::before { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.stat-card.green::before { background: linear-gradient(90deg, var(--green), var(--accent2)); }
+.stat-card.yellow::before { background: linear-gradient(90deg, var(--yellow), #ff6b35); }
+.stat-card.red::before { background: linear-gradient(90deg, var(--red), var(--purple)); }
+.stat-card.purple::before { background: linear-gradient(90deg, var(--purple), var(--accent)); }
+.stat-label { font-size: 12px; color: var(--text3); letter-spacing: 0.5px; margin-bottom: 8px; text-transform: uppercase; font-weight: 600; }
+.stat-value { font-family: 'Syne',sans-serif; font-weight: 800; font-size: 26px; margin-bottom: 6px; }
+.stat-change { font-size: 12px; display: flex; align-items: center; gap: 4px; }
+.stat-change.up { color: var(--green); }
+.stat-change.down { color: var(--red); }
+.stat-icon {
+  position: absolute; right: 16px; top: 16px;
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.stat-icon.blue { background: rgba(61,127,255,0.12); }
+.stat-icon.green { background: rgba(34,197,94,0.12); }
+.stat-icon.yellow { background: rgba(245,158,11,0.12); }
+.stat-icon.red { background: rgba(239,68,68,0.12); }
+.stat-icon.purple { background: rgba(168,85,247,0.12); }
+
+/* ── LANDING PAGE ── */
+#page-landing {
+  display: block;
+  padding: 0;
+  background: var(--bg);
+}
+.landing-nav {
+  display: flex; align-items: center; padding: 20px 48px; gap: 20px;
+  border-bottom: 1px solid var(--border); position: sticky; top: 0;
+  background: var(--bg2); z-index: 10;
+}
+.landing-hero {
+  padding: 80px 48px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(61,127,255,0.1); border: 1px solid rgba(61,127,255,0.3);
+  color: var(--accent); padding: 6px 14px; border-radius: 20px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 28px;
+}
+.hero-title {
+  font-family: 'Syne',sans-serif; font-weight: 800;
+  font-size: clamp(36px, 5vw, 64px); line-height: 1.1;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--text), var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub { font-size: 18px; color: var(--text2); max-width: 600px; margin: 0 auto 36px; line-height: 1.7; }
+.hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-xl { padding: 14px 32px; font-size: 16px; border-radius: 12px; }
+
+.features-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
+  padding: 0 48px 60px; max-width: 1100px; margin: 0 auto;
+}
+.feature-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px;
+  transition: all 0.3s;
+}
+.feature-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px var(--glow); }
+.feature-icon { font-size: 28px; margin-bottom: 14px; }
+.feature-title { font-family: 'Syne',sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+.feature-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+/* ── CHART CONTAINERS ── */
+.chart-wrap { position: relative; }
+.chart-h200 { height: 200px; }
+.chart-h250 { height: 250px; }
+.chart-h300 { height: 300px; }
+
+/* ── HEALTH SCORE ── */
+.health-score-ring {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.score-donut-wrap { position: relative; width: 160px; height: 160px; margin: 0 auto 16px; }
+.score-center {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.score-num { font-family: 'Syne',sans-serif; font-weight: 800; font-size: 36px; }
+.score-label { font-size: 11px; color: var(--text3); }
+.score-badge {
+  display: inline-block; padding: 4px 12px; border-radius: 20px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+}
+.score-badge.good { background: rgba(34,197,94,0.15); color: var(--green); }
+.score-badge.avg { background: rgba(245,158,11,0.15); color: var(--yellow); }
+
+.score-factors { display: flex; flex-direction: column; gap: 10px; }
+.factor-row { display: flex; align-items: center; gap: 10px; }
+.factor-label { font-size: 12px; color: var(--text2); width: 140px; flex-shrink: 0; }
+.factor-bar { flex: 1; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+.factor-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.factor-val { font-size: 12px; font-weight: 600; width: 30px; text-align: right; }
+
+/* ── AI CHAT ── */
+#page-chat { padding: 0; display: none; height: calc(100vh - 64px); }
+#page-chat.active { display: flex; flex-direction: column; }
+.chat-header { padding: 20px 28px; border-bottom: 1px solid var(--border); background: var(--bg2); display: flex; align-items: center; gap: 14px; }
+.chat-ai-avatar { width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent), var(--accent2)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.chat-ai-name { font-family: 'Syne',sans-serif; font-weight: 700; font-size: 16px; }
+.chat-ai-status { font-size: 12px; color: var(--green); display: flex; align-items: center; gap: 4px; }
+.chat-ai-status::before { content: '●'; font-size: 8px; }
+.chat-messages { flex: 1; overflow-y: auto; padding: 24px 28px; display: flex; flex-direction: column; gap: 20px; }
+.chat-bubble { max-width: 700px; }
+.chat-bubble.user { align-self: flex-end; }
+.chat-bubble.ai { align-self: flex-start; }
+.bubble-content {
+  padding: 14px 18px; border-radius: 16px; font-size: 14px; line-height: 1.6;
+}
+.chat-bubble.user .bubble-content { background: var(--accent); color: white; border-radius: 16px 16px 4px 16px; }
+.chat-bubble.ai .bubble-content { background: var(--card); border: 1px solid var(--border); border-radius: 16px 16px 16px 4px; }
+.bubble-meta { font-size: 11px; color: var(--text3); margin-top: 4px; padding: 0 4px; }
+.bubble-suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.suggestion-pill {
+  padding: 6px 12px; background: rgba(61,127,255,0.1); border: 1px solid rgba(61,127,255,0.25);
+  color: var(--accent); border-radius: 20px; font-size: 12px; cursor: pointer;
+  transition: all 0.2s; white-space: nowrap;
+}
+.suggestion-pill:hover { background: rgba(61,127,255,0.2); }
+.chat-input-area { padding: 20px 28px; border-top: 1px solid var(--border); background: var(--bg2); }
+.chat-input-row { display: flex; gap: 10px; align-items: flex-end; }
+.chat-textarea {
+  flex: 1; background: var(--card); border: 1px solid var(--border);
+  color: var(--text); border-radius: 12px; padding: 12px 16px;
+  font-family: 'DM Sans',sans-serif; font-size: 14px; resize: none;
+  min-height: 48px; max-height: 120px; transition: border-color 0.2s;
+  outline: none;
+}
+.chat-textarea:focus { border-color: var(--accent); }
+.chat-send-btn {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--accent); border: none; color: white;
+  font-size: 18px; cursor: pointer; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0; transition: all 0.2s;
+}
+.chat-send-btn:hover { background: #5590ff; transform: translateY(-1px); }
+.chat-quick-prompts { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.quick-prompt {
+  padding: 6px 12px; background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; font-size: 12px; color: var(--text2); cursor: pointer;
+  transition: all 0.2s;
+}
+.quick-prompt:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── TYPING INDICATOR ── */
+.typing-dots { display: flex; gap: 4px; align-items: center; padding: 4px 0; }
+.typing-dots span {
+  width: 6px; height: 6px; background: var(--text3); border-radius: 50%;
+  animation: typingBounce 1.2s infinite;
+}
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingBounce {
+  0%,60%,100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ── ALERTS ── */
+.alert-item {
+  display: flex; gap: 14px; padding: 14px 18px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; margin-bottom: 10px; align-items: flex-start;
+  transition: all 0.2s;
+}
+.alert-item:hover { border-color: var(--border2); }
+.alert-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.alert-icon.warn { background: rgba(245,158,11,0.15); }
+.alert-icon.danger { background: rgba(239,68,68,0.15); }
+.alert-icon.info { background: rgba(61,127,255,0.15); }
+.alert-icon.success { background: rgba(34,197,94,0.15); }
+.alert-text { flex: 1; }
+.alert-title { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.alert-desc { font-size: 12px; color: var(--text2); }
+.alert-time { font-size: 11px; color: var(--text3); white-space: nowrap; }
+
+/* ── TAGS ── */
+.tag { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.tag-blue { background: rgba(61,127,255,0.12); color: var(--accent); }
+.tag-green { background: rgba(34,197,94,0.12); color: var(--green); }
+.tag-yellow { background: rgba(245,158,11,0.12); color: var(--yellow); }
+.tag-red { background: rgba(239,68,68,0.12); color: var(--red); }
+
+/* ── PROGRESS ── */
+.progress-bar { height: 8px; background: var(--bg3); border-radius: 4px; overflow: hidden; margin-top: 6px; }
+.progress-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
+
+/* ── TABLE ── */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  text-align: left; font-size: 11px; color: var(--text3); letter-spacing: 0.5px;
+  text-transform: uppercase; padding: 10px 14px; border-bottom: 1px solid var(--border);
+  font-weight: 600;
+}
+.data-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--card2); }
+
+/* ── SCENARIO SLIDERS ── */
+.slider-group { margin-bottom: 20px; }
+.slider-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.slider-name { font-size: 14px; font-weight: 500; }
+.slider-val { font-family: 'Syne',sans-serif; font-weight: 700; font-size: 16px; color: var(--accent); }
+input[type=range] {
+  width: 100%; -webkit-appearance: none; height: 6px;
+  background: var(--bg3); border-radius: 3px; outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent); cursor: pointer; border: 2px solid var(--bg2);
+  box-shadow: 0 2px 8px rgba(61,127,255,0.4);
+}
+
+/* ── RISK ANALYZER ── */
+.risk-meter { position: relative; padding: 20px; text-align: center; }
+.risk-arc { width: 200px; height: 100px; margin: 0 auto; }
+.risk-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); margin-top: 8px; }
+.risk-level { font-family: 'Syne',sans-serif; font-weight: 800; font-size: 24px; }
+
+/* ── CATEGORY PILLS ── */
+.cat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.cat-item {
+  background: var(--card2); border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px; text-align: center; cursor: pointer; transition: all 0.2s;
+}
+.cat-item:hover { border-color: var(--accent); }
+.cat-emoji { font-size: 22px; margin-bottom: 6px; }
+.cat-name { font-size: 12px; color: var(--text2); font-weight: 500; }
+.cat-amount { font-family: 'Syne',sans-serif; font-size: 14px; font-weight: 700; }
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+/* ── INVESTMENT BARS ── */
+.invest-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.invest-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.invest-name { font-size: 13px; color: var(--text2); flex: 1; }
+.invest-bar { width: 80px; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+.invest-fill { height: 100%; border-radius: 3px; }
+.invest-pct { font-size: 13px; font-weight: 600; width: 35px; text-align: right; }
+.invest-val { font-size: 12px; color: var(--text3); width: 80px; text-align: right; }
+
+/* ── SCROLL ── */
+.scroll-y { overflow-y: auto; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .landing-hero { padding: 50px 24px 40px; }
+  .features-grid { padding: 0 24px 40px; }
+}
+@media (max-width: 600px) {
+  .grid-2, .grid-3, .grid-4, .features-grid { grid-template-columns: 1fr; }
+  .page { padding: 16px; }
+  .topbar { padding: 0 16px; }
+}
+
+/* ── MOBILE MENU OVERLAY ── */
+.sidebar-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  z-index: 99;
+}
+.sidebar-overlay.show { display: block; }
+
+/* ── ONBOARDING ── */
+.onboard-step { display: none; }
+.onboard-step.active { display: block; animation: fadeIn 0.4s ease; }
+.step-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 28px; }
+.step-dot { width: 8px; height: 8px; border-radius: 4px; background: var(--border2); transition: all 0.3s; }
+.step-dot.active { width: 24px; background: var(--accent); }
+.onboard-icon { font-size: 48px; text-align: center; margin-bottom: 16px; }
+.onboard-title { font-family: 'Syne',sans-serif; font-weight: 800; font-size: 24px; text-align: center; margin-bottom: 8px; }
+.onboard-sub { font-size: 14px; color: var(--text2); text-align: center; margin-bottom: 28px; line-height: 1.6; }
+.form-group { margin-bottom: 16px; }
+.form-label { font-size: 12px; font-weight: 600; color: var(--text3); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; display: block; }
+.form-input {
+  width: 100%; padding: 12px 14px; background: var(--card);
+  border: 1px solid var(--border); color: var(--text);
+  border-radius: 10px; font-family: 'DM Sans',sans-serif; font-size: 14px; outline: none;
+  transition: border-color 0.2s;
+}
+.form-input:focus { border-color: var(--accent); }
+select.form-input option { background: var(--card); }
+
+/* ── REPORTS ── */
+.report-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px; display: flex;
+  align-items: center; gap: 16px; cursor: pointer; transition: all 0.2s;
+  margin-bottom: 12px;
+}
+.report-card:hover { border-color: var(--accent); transform: translateX(4px); }
+.report-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.report-info { flex: 1; }
+.report-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.report-meta { font-size: 12px; color: var(--text3); }
+.report-arrow { color: var(--text3); font-size: 18px; }
+
+/* ── IDENTITY / DEEPFAKE ── */
+.id-verify-box {
+  border: 2px dashed var(--border2); border-radius: 16px;
+  padding: 40px; text-align: center; cursor: pointer;
+  transition: all 0.3s;
+}
+.id-verify-box:hover { border-color: var(--accent); background: var(--glow); }
+.verified-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3);
+  color: var(--green); padding: 8px 16px; border-radius: 20px; font-weight: 600;
+  font-size: 14px;
+}
+
+/* ── SPARKLINE ── */
+.sparkline-wrap { display: flex; align-items: flex-end; gap: 3px; height: 40px; }
+.spark-bar { flex: 1; background: var(--accent); border-radius: 2px 2px 0 0; opacity: 0.7; transition: opacity 0.2s; }
+.spark-bar:hover { opacity: 1; }
+
+/* ── TOOLTIP ── */
+.tooltip-wrap { position: relative; display: inline-block; }
+.tooltip-text {
+  visibility: hidden; background: var(--card2); color: var(--text);
+  border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px;
+  font-size: 12px; position: absolute; bottom: calc(100% + 6px); left: 50%;
+  transform: translateX(-50%); white-space: nowrap; z-index: 100;
+  box-shadow: var(--shadow);
+}
+.tooltip-wrap:hover .tooltip-text { visibility: visible; }
+
+/* ── NETWORTH SECTION ── */
+.nw-big { font-family: 'Syne',sans-serif; font-size: 38px; font-weight: 800; }
+.nw-change { color: var(--green); font-size: 14px; font-weight: 600; }
+
+/* ── PILL TABS ── */
+.pill-tabs { display: flex; gap: 6px; background: var(--bg3); padding: 4px; border-radius: 10px; width: fit-content; }
+.pill-tab { padding: 7px 16px; border-radius: 7px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; color: var(--text2); }
+.pill-tab.active { background: var(--card); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+
+/* ── GOAL TRACKER ── */
+.goal-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.goal-item:last-child { border-bottom: none; }
+.goal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.goal-name { font-weight: 600; font-size: 14px; }
+.goal-pct { font-family: 'Syne',sans-serif; font-weight: 700; font-size: 18px; }
+.goal-progress { height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
+.goal-fill { height: 100%; border-radius: 3px; }
+.goal-meta { font-size: 12px; color: var(--text3); }
+
+/* ── LOADING SHIMMER ── */
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+.shimmer {
+  background: linear-gradient(90deg, var(--card) 25%, var(--card2) 50%, var(--card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── GLOW EFFECTS ── */
+.glow-blue { box-shadow: 0 0 20px rgba(61,127,255,0.2); }
+.glow-green { box-shadow: 0 0 20px rgba(34,197,94,0.2); }
+
+/* LANDING */
+#page-landing .main-content { margin-left: 0; }
+.landing-wrapper { margin-left: 0 !important; }
+</style>
+</head>
+<body>
+
+<!-- LANDING PAGE (fullscreen, no sidebar) -->
+<div id="landing-wrapper">
+  <nav class="landing-nav">
+    <div class="logo-mark">
+      <div class="logo-icon">F</div>
+      <div>
+        <div class="logo-text">Fin<span>Sight</span> AI</div>
+      </div>
+    </div>
+    <div style="flex:1"></div>
+    <button class="btn btn-ghost" onclick="setTheme()">🌗 Theme</button>
+    <button class="btn btn-primary btn-xl" onclick="goToApp('dashboard')">Launch App →</button>
+  </nav>
+
+  <div class="landing-hero">
+    <div class="hero-badge">✦ AI-Powered Personal Finance</div>
+    <h1 class="hero-title">Your Money,<br>Intelligently Understood</h1>
+    <p class="hero-sub">FinSight AI combines advanced AI, predictive analytics, and real-time insights to help you make smarter financial decisions — in plain language.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-primary btn-xl" onclick="goToApp('onboarding')">🚀 Get Started Free</button>
+      <button class="btn btn-ghost btn-xl" onclick="goToApp('dashboard')">View Demo Dashboard →</button>
+    </div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <div class="feature-title">AI Financial Assistant</div>
+      <div class="feature-desc">Ask anything in plain language. "Can I afford a ₹50K phone?" gets you a personalized answer with charts.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Smart Dashboard</div>
+      <div class="feature-desc">Complete financial snapshot — income, expenses, savings rate, net worth, and portfolio in one view.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏆</div>
+      <div class="feature-title">Financial Health Score</div>
+      <div class="feature-desc">Get a 0-100 score based on savings ratio, debt, investments, and spending discipline.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔮</div>
+      <div class="feature-title">Scenario Simulator</div>
+      <div class="feature-desc">Simulate "what if" scenarios. What if I invest ₹10K/month? Buy a car? Get a raise?</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <div class="feature-title">Investment Advisor</div>
+      <div class="feature-desc">Personalized SIP suggestions, portfolio diversification, and risk-based allocation strategies.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛡️</div>
+      <div class="feature-title">Deepfake-Safe Identity</div>
+      <div class="feature-desc">AI face verification with liveness detection ensures secure financial authentication.</div>
+    </div>
+  </div>
+</div>
+
+<!-- APP WRAPPER -->
+<div id="app-wrapper" style="display:none;">
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">
+        <div class="logo-icon">F</div>
+        <div>
+          <div class="logo-text">Fin<span>Sight</span> AI</div>
+          <div class="logo-sub">Finance Intelligence</div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Overview</div>
+      <div class="nav-item active" onclick="showPage('dashboard',this)">
+        <span class="nav-icon">📊</span> Dashboard
+      </div>
+      <div class="nav-item" onclick="showPage('chat',this)">
+        <span class="nav-icon">🤖</span> AI Assistant
+      </div>
+      <div class="nav-item" onclick="showPage('health',this)">
+        <span class="nav-icon">🏆</span> Health Score
+      </div>
+
+      <div class="nav-section-title">Planning</div>
+      <div class="nav-item" onclick="showPage('insights',this)">
+        <span class="nav-icon">💡</span> Insights
+      </div>
+      <div class="nav-item" onclick="showPage('scenarios',this)">
+        <span class="nav-icon">🔮</span> Simulator
+      </div>
+      <div class="nav-item" onclick="showPage('investments',this)">
+        <span class="nav-icon">📈</span> Investments
+      </div>
+      <div class="nav-item" onclick="showPage('risk',this)">
+        <span class="nav-icon">⚖️</span> Risk Analyzer
+      </div>
+
+      <div class="nav-section-title">Management</div>
+      <div class="nav-item" onclick="showPage('alerts',this)">
+        <span class="nav-icon">🔔</span> Alerts
+        <span class="nav-badge">4</span>
+      </div>
+      <div class="nav-item" onclick="showPage('reports',this)">
+        <span class="nav-icon">📄</span> Reports
+      </div>
+      <div class="nav-item" onclick="showPage('identity',this)">
+        <span class="nav-icon">🛡️</span> Identity
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">SR</div>
+        <div>
+          <div class="user-name">Sravss</div>
+          <div class="user-plan">Pro Plan ✓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <button class="icon-btn" id="menuBtn" onclick="toggleSidebar()" style="display:none;">☰</button>
+      <div>
+        <div class="topbar-title" id="topbarTitle">Dashboard</div>
+        <span class="topbar-subtitle" id="topbarSub">Welcome back, Sravss 👋</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-ghost" onclick="setTheme()">🌗</button>
+        <button class="btn btn-primary" onclick="showPage('chat',null)">🤖 Ask AI</button>
+      </div>
+    </div>
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <div class="page active" id="page-dashboard">
+      <!-- Stats Row -->
+      <div class="grid-4" style="margin-bottom:20px">
+        <div class="stat-card blue">
+          <div class="stat-icon blue">💰</div>
+          <div class="stat-label">Monthly Income</div>
+          <div class="stat-value">₹95,000</div>
+          <div class="stat-change up">▲ 8.2% vs last month</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-icon green">📉</div>
+          <div class="stat-label">Total Expenses</div>
+          <div class="stat-value">₹58,400</div>
+          <div class="stat-change down">▲ 3.1% vs last month</div>
+        </div>
+        <div class="stat-card yellow">
+          <div class="stat-icon yellow">🏦</div>
+          <div class="stat-label">Monthly Savings</div>
+          <div class="stat-value">₹36,600</div>
+          <div class="stat-change up">▲ Savings Rate: 38.5%</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-icon purple">📊</div>
+          <div class="stat-label">Net Worth</div>
+          <div class="stat-value">₹8.4L</div>
+          <div class="stat-change up">▲ 12.4% YTD</div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid-2" style="margin-bottom:20px">
+        <!-- Net Worth Timeline -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Net Worth Timeline</div>
+              <div class="card-subtitle">Last 12 months</div>
+            </div>
+            <div class="pill-tabs">
+              <div class="pill-tab active">1Y</div>
+              <div class="pill-tab">3Y</div>
+              <div class="pill-tab">All</div>
+            </div>
+          </div>
+          <div class="chart-wrap chart-h250">
+            <canvas id="netWorthChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Expense Breakdown -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Expense Breakdown</div>
+              <div class="card-subtitle">This month</div>
+            </div>
+            <span class="tag tag-blue">March 2025</span>
+          </div>
+          <div style="display:flex; gap:20px; align-items:center;">
+            <div class="chart-wrap" style="width:140px; height:140px; flex-shrink:0;">
+              <canvas id="expensePieChart"></canvas>
+            </div>
+            <div style="flex:1">
+              <div class="invest-row"><div class="invest-dot" style="background:#3d7fff"></div><div class="invest-name">Housing & Rent</div><div class="invest-val">₹18,000</div><div class="invest-pct">31%</div></div>
+              <div class="invest-row"><div class="invest-dot" style="background:#00d4aa"></div><div class="invest-name">Food & Dining</div><div class="invest-val">₹12,500</div><div class="invest-pct">21%</div></div>
+              <div class="invest-row"><div class="invest-dot" style="background:#f59e0b"></div><div class="invest-name">Transport</div><div class="invest-val">₹6,800</div><div class="invest-pct">12%</div></div>
+              <div class="invest-row"><div class="invest-dot" style="background:#a855f7"></div><div class="invest-name">Shopping</div><div class="invest-val">₹9,200</div><div class="invest-pct">16%</div></div>
+              <div class="invest-row"><div class="invest-dot" style="background:#ef4444"></div><div class="invest-name">Subscriptions</div><div class="invest-val">₹3,400</div><div class="invest-pct">6%</div></div>
+              <div class="invest-row"><div class="invest-dot" style="background:#22c55e"></div><div class="invest-name">Others</div><div class="invest-val">₹8,500</div><div class="invest-pct">14%</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Row -->
+      <div class="grid-3" style="margin-bottom:20px">
+        <!-- Monthly Income vs Expenses -->
+        <div class="card" style="grid-column: span 2">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Income vs Expenses</div>
+              <div class="card-subtitle">Monthly comparison</div>
+            </div>
+          </div>
+          <div class="chart-wrap chart-h200">
+            <canvas id="incomeExpenseChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Health Score Mini -->
+        <div class="card" style="cursor:pointer" onclick="showPage('health',null)">
+          <div class="card-header">
+            <div class="card-title">Financial Health</div>
+            <span class="tag tag-green">Good</span>
+          </div>
+          <div class="health-score-ring">
+            <div class="score-donut-wrap">
+              <canvas id="healthDonutDash" width="160" height="160"></canvas>
+              <div class="score-center">
+                <div class="score-num" style="color:var(--green)">76</div>
+                <div class="score-label">/ 100</div>
+              </div>
+            </div>
+            <div class="score-badge good">Financially Healthy</div>
+          </div>
+          <div style="font-size:12px; color:var(--text3); text-align:center; margin-top:8px">Tap for detailed breakdown →</div>
+        </div>
+      </div>
+
+      <!-- Goals & AI Tip Row -->
+      <div class="grid-2">
+        <!-- Goals -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🎯 Goal Tracker</div>
+            <button class="btn btn-ghost" style="font-size:12px; padding:4px 10px;">+ Add Goal</button>
+          </div>
+          <div class="goal-item">
+            <div class="goal-header">
+              <div>
+                <div class="goal-name">Emergency Fund (6 months)</div>
+                <div class="goal-meta">₹2,28,000 / ₹5,70,000</div>
+              </div>
+              <div class="goal-pct" style="color:var(--yellow)">40%</div>
+            </div>
+            <div class="goal-progress"><div class="goal-fill" style="width:40%; background:var(--yellow)"></div></div>
+          </div>
+          <div class="goal-item">
+            <div class="goal-header">
+              <div>
+                <div class="goal-name">New Laptop Fund</div>
+                <div class="goal-meta">₹42,000 / ₹75,000</div>
+              </div>
+              <div class="goal-pct" style="color:var(--accent)">56%</div>
+            </div>
+            <div class="goal-progress"><div class="goal-fill" style="width:56%; background:var(--accent)"></div></div>
+          </div>
+          <div class="goal-item">
+            <div class="goal-header">
+              <div>
+                <div class="goal-name">Trip to Goa 🏖️</div>
+                <div class="goal-meta">₹28,500 / ₹35,000</div>
+              </div>
+              <div class="goal-pct" style="color:var(--green)">81%</div>
+            </div>
+            <div class="goal-progress"><div class="goal-fill" style="width:81%; background:var(--green)"></div></div>
+          </div>
+        </div>
+
+        <!-- AI Weekly Tip -->
+        <div class="card" style="background: linear-gradient(135deg, rgba(61,127,255,0.08), rgba(0,212,170,0.05)); border-color: rgba(61,127,255,0.25);">
+          <div class="card-header">
+            <div class="card-title">🤖 AI Financial Coach</div>
+            <span class="tag tag-blue">This Week</span>
+          </div>
+          <div style="margin-bottom:16px">
+            <div style="font-size:15px; font-weight:600; line-height:1.5; margin-bottom:10px;">
+              "You're spending ₹3,400/month on subscriptions. Cancel Netflix + Spotify combo saves ₹1,200/month — ₹14,400/year."
+            </div>
+            <div style="font-size:13px; color:var(--text2); line-height:1.6;">
+              Based on your income and savings goals, redirecting this to your Emergency Fund gets you there 4 months earlier.
+            </div>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
+            <span class="tag tag-green">💡 Save ₹14,400/yr</span>
+            <span class="tag tag-yellow">⚡ High Impact</span>
+          </div>
+          <div class="divider"></div>
+          <div style="margin-bottom:12px">
+            <div style="font-size:12px; color:var(--text3); margin-bottom:8px;">WEEKLY TIPS PROGRESS</div>
+            <div style="display:flex; gap:6px">
+              <div style="width:32px; height:32px; border-radius:8px; background:var(--green); display:flex; align-items:center; justify-content:center; font-size:14px; color:white">✓</div>
+              <div style="width:32px; height:32px; border-radius:8px; background:var(--green); display:flex; align-items:center; justify-content:center; font-size:14px; color:white">✓</div>
+              <div style="width:32px; height:32px; border-radius:8px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:14px; color:white">★</div>
+              <div style="width:32px; height:32px; border-radius:8px; background:var(--border); border-radius:8px"></div>
+              <div style="width:32px; height:32px; border-radius:8px; background:var(--border); border-radius:8px"></div>
+            </div>
+          </div>
+          <button class="btn btn-primary" style="width:100%; justify-content:center" onclick="showPage('chat',null)">Ask AI for More Tips →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AI CHAT ═══ -->
+    <div class="page" id="page-chat">
+      <div class="chat-header">
+        <div class="chat-ai-avatar">🤖</div>
+        <div>
+          <div class="chat-ai-name">FinSight AI Assistant</div>
+          <div class="chat-ai-status">Online — Powered by Claude</div>
+        </div>
+        <div style="margin-left:auto; font-size:12px; color:var(--text3)">Your data is private & secure 🔒</div>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-bubble ai">
+          <div class="bubble-content">
+            <strong>👋 Hi Sravss!</strong> I'm your AI financial assistant. I know your finances and can help you make smarter decisions.<br><br>
+            You can ask me things like:
+            <div class="bubble-suggestions" style="margin-top:10px">
+              <span class="suggestion-pill" onclick="sendQuick(this.innerText)">Can I afford a ₹50,000 phone?</span>
+              <span class="suggestion-pill" onclick="sendQuick(this.innerText)">How can I save ₹5 lakhs in 2 years?</span>
+              <span class="suggestion-pill" onclick="sendQuick(this.innerText)">Should I increase my SIP?</span>
+              <span class="suggestion-pill" onclick="sendQuick(this.innerText)">Why did my expenses increase?</span>
+              <span class="suggestion-pill" onclick="sendQuick(this.innerText)">Predict my savings next year</span>
+            </div>
+          </div>
+          <div class="bubble-meta">FinSight AI • Just now</div>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <div class="chat-quick-prompts">
+          <div class="quick-prompt" onclick="sendQuick(this.innerText)">💰 Savings analysis</div>
+          <div class="quick-prompt" onclick="sendQuick(this.innerText)">📊 Spending report</div>
+          <div class="quick-prompt" onclick="sendQuick(this.innerText)">📈 Investment advice</div>
+          <div class="quick-prompt" onclick="sendQuick(this.innerText)">🎯 Budget tips</div>
+        </div>
+        <div class="chat-input-row">
+          <textarea class="chat-textarea" id="chatInput" placeholder="Ask anything about your finances..." rows="1"
+            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"
+            oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
+          <button class="chat-send-btn" onclick="sendChat()">↑</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ HEALTH SCORE ═══ -->
+    <div class="page" id="page-health">
+      <div class="grid-2" style="margin-bottom:20px; align-items:start">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Financial Health Score</div>
+              <div class="card-subtitle">Calculated based on 5 key factors</div>
+            </div>
+            <button class="btn btn-ghost" style="font-size:12px; padding:6px 12px">Refresh</button>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; padding:20px 0">
+            <div style="position:relative; width:180px; height:180px; margin-bottom:20px">
+              <canvas id="healthScoreRing" width="180" height="180"></canvas>
+              <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                <div style="font-family:'Syne',sans-serif; font-weight:800; font-size:48px; color:var(--green)">76</div>
+                <div style="font-size:12px; color:var(--text3)">out of 100</div>
+              </div>
+            </div>
+            <span class="score-badge good" style="font-size:14px; padding:8px 20px">✓ Financially Healthy</span>
+            <p style="font-size:13px; color:var(--text2); text-align:center; margin-top:16px; max-width:320px; line-height:1.6">
+              Your score improved by <strong style="color:var(--green)">+4 points</strong> this month. Focus on building your emergency fund to push past 80.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Score Breakdown</div></div>
+          <div class="score-factors" style="padding:8px 0">
+            <div class="factor-row">
+              <div class="factor-label">💰 Savings Ratio</div>
+              <div class="factor-bar"><div class="factor-fill" style="width:85%"></div></div>
+              <div class="factor-val" style="color:var(--green)">85</div>
+            </div>
+            <div class="factor-row">
+              <div class="factor-label">📉 Debt-to-Income</div>
+              <div class="factor-bar"><div class="factor-fill" style="width:72%; background:linear-gradient(90deg,var(--yellow),var(--accent))"></div></div>
+              <div class="factor-val" style="color:var(--yellow)">72</div>
+            </div>
+            <div class="factor-row">
+              <div class="factor-label">📈 Investment Diversity</div>
+              <div class="factor-bar"><div class="factor-fill" style="width:68%; background:linear-gradient(90deg,var(--yellow),var(--accent))"></div></div>
+              <div class="factor-val" style="color:var(--yellow)">68</div>
+            </div>
+            <div class="factor-row">
+              <div class="factor-label">🏦 Emergency Fund</div>
+              <div class="factor-bar"><div class="factor-fill" style="width:40%; background:linear-gradient(90deg,var(--red),var(--yellow))"></div></div>
+              <div class="factor-val" style="color:var(--red)">40</div>
+            </div>
+            <div class="factor-row">
+              <div class="factor-label">🎯 Spending Discipline</div>
+              <div class="factor-bar"><div class="factor-fill" style="width:90%"></div></div>
+              <div class="factor-val" style="color:var(--green)">90</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div style="font-size:12px; color:var(--text3); margin-bottom:8px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase;">Priority Actions</div>
+          <div style="display:flex; flex-direction:column; gap:8px">
+            <div style="display:flex; gap:10px; align-items:center; font-size:13px; padding:10px; background:rgba(239,68,68,0.06); border-radius:8px; border:1px solid rgba(239,68,68,0.15)">
+              <span>🔴</span>
+              <span style="color:var(--text2)">Build emergency fund: Need ₹3.42L more (currently 40%)</span>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; font-size:13px; padding:10px; background:rgba(245,158,11,0.06); border-radius:8px; border:1px solid rgba(245,158,11,0.15)">
+              <span>🟡</span>
+              <span style="color:var(--text2)">Diversify investments: Add international ETF allocation</span>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; font-size:13px; padding:10px; background:rgba(34,197,94,0.06); border-radius:8px; border:1px solid rgba(34,197,94,0.15)">
+              <span>🟢</span>
+              <span style="color:var(--text2)">Savings rate is excellent — maintain above 35%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Score History</div><div class="card-subtitle">Last 6 months</div></div>
+        <div class="chart-wrap chart-h200">
+          <canvas id="healthHistoryChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ INSIGHTS ═══ -->
+    <div class="page" id="page-insights">
+      <div class="grid-2" style="margin-bottom:20px">
+        <div class="card">
+          <div class="card-header"><div class="card-title">🔍 AI Expense Intelligence</div><span class="tag tag-blue">Auto-categorized</span></div>
+          <div class="cat-grid">
+            <div class="cat-item"><div class="cat-emoji">🍔</div><div class="cat-name">Food</div><div class="cat-amount">₹12,500</div></div>
+            <div class="cat-item"><div class="cat-emoji">🚗</div><div class="cat-name">Travel</div><div class="cat-amount">₹6,800</div></div>
+            <div class="cat-item"><div class="cat-emoji">🛍️</div><div class="cat-name">Shopping</div><div class="cat-amount">₹9,200</div></div>
+            <div class="cat-item"><div class="cat-emoji">⚡</div><div class="cat-name">Bills</div><div class="cat-amount">₹4,800</div></div>
+            <div class="cat-item"><div class="cat-emoji">📱</div><div class="cat-name">Subscriptions</div><div class="cat-amount">₹3,400</div></div>
+            <div class="cat-item"><div class="cat-emoji">📈</div><div class="cat-name">Investments</div><div class="cat-amount">₹20,000</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">🚨 Unusual Spending Detected</div></div>
+          <div>
+            <div class="alert-item">
+              <div class="alert-icon warn">🍔</div>
+              <div class="alert-text">
+                <div class="alert-title">Food spending +35% this month</div>
+                <div class="alert-desc">₹12,500 vs usual ₹9,200 — ₹3,300 above average. Possible dining out increase.</div>
+              </div>
+            </div>
+            <div class="alert-item">
+              <div class="alert-icon danger">🛍️</div>
+              <div class="alert-text">
+                <div class="alert-title">Shopping spike detected</div>
+                <div class="alert-desc">₹9,200 this month vs ₹5,400 average. Review recent purchases.</div>
+              </div>
+            </div>
+            <div class="alert-item">
+              <div class="alert-icon info">📱</div>
+              <div class="alert-text">
+                <div class="alert-title">6 active subscriptions found</div>
+                <div class="alert-desc">Netflix, Spotify, Zomato Gold, Hotstar, LinkedIn, GPT Plus — cancel 2 to save ₹1,200/mo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-header"><div class="card-title">Spending Trends (6 Months)</div></div>
+        <div class="chart-wrap chart-h250">
+          <canvas id="spendingTrendChart"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Recent Transactions</div><button class="btn btn-ghost" style="font-size:12px; padding:4px 10px">View All</button></div>
+        <table class="data-table">
+          <thead><tr><th>Description</th><th>Category</th><th>Date</th><th>Amount</th></tr></thead>
+          <tbody>
+            <tr><td>Swiggy Order</td><td><span class="tag tag-yellow">🍔 Food</span></td><td>Mar 15</td><td style="color:var(--red)">-₹680</td></tr>
+            <tr><td>Amazon Purchase</td><td><span class="tag tag-blue">🛍️ Shopping</span></td><td>Mar 14</td><td style="color:var(--red)">-₹3,200</td></tr>
+            <tr><td>Netflix Subscription</td><td><span class="tag tag-blue">📱 Subscriptions</span></td><td>Mar 13</td><td style="color:var(--red)">-₹649</td></tr>
+            <tr><td>Salary Credit</td><td><span class="tag tag-green">💰 Income</span></td><td>Mar 1</td><td style="color:var(--green)">+₹95,000</td></tr>
+            <tr><td>HDFC SIP</td><td><span class="tag tag-blue">📈 Investment</span></td><td>Mar 1</td><td style="color:var(--accent)">-₹10,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══ SCENARIO SIMULATOR ═══ -->
+    <div class="page" id="page-scenarios">
+      <div class="grid-2" style="align-items:start">
+        <div class="card">
+          <div class="card-header"><div class="card-title">🔮 Scenario Simulator</div><span class="tag tag-blue">AI Powered</span></div>
+          <p style="font-size:13px; color:var(--text2); margin-bottom:20px; line-height:1.6">Adjust variables to see how they impact your financial future. All projections are personalized to your current profile.</p>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <div class="slider-name">Monthly SIP Investment</div>
+              <div class="slider-val" id="sipVal">₹10,000</div>
+            </div>
+            <input type="range" min="1000" max="50000" value="10000" step="500" oninput="updateScenario('sipVal','₹',this.value,true);updateScenarioChart()">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <div class="slider-name">Investment Duration (Years)</div>
+              <div class="slider-val" id="durationVal">10 yrs</div>
+            </div>
+            <input type="range" min="1" max="30" value="10" step="1" oninput="document.getElementById('durationVal').innerText=this.value+' yrs';updateScenarioChart()">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <div class="slider-name">Expected Annual Return</div>
+              <div class="slider-val" id="returnVal">12%</div>
+            </div>
+            <input type="range" min="4" max="25" value="12" step="0.5" oninput="document.getElementById('returnVal').innerText=this.value+'%';updateScenarioChart()">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <div class="slider-name">Salary Growth (Annual)</div>
+              <div class="slider-val" id="salaryVal">10%</div>
+            </div>
+            <input type="range" min="0" max="30" value="10" step="1" oninput="document.getElementById('salaryVal').innerText=this.value+'%';updateScenarioChart()">
+          </div>
+
+          <div class="divider"></div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+            <div style="background:var(--bg3); border-radius:12px; padding:16px; text-align:center">
+              <div style="font-size:12px; color:var(--text3); margin-bottom:6px">TOTAL INVESTED</div>
+              <div style="font-family:'Syne',sans-serif; font-weight:800; font-size:22px; color:var(--accent)" id="totalInvested">₹12.0L</div>
+            </div>
+            <div style="background:var(--bg3); border-radius:12px; padding:16px; text-align:center">
+              <div style="font-size:12px; color:var(--text3); margin-bottom:6px">PROJECTED VALUE</div>
+              <div style="font-family:'Syne',sans-serif; font-weight:800; font-size:22px; color:var(--green)" id="projectedVal">₹23.2L</div>
+            </div>
+          </div>
+          <div style="margin-top:12px; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); border-radius:10px; padding:12px; font-size:13px; color:var(--text2)">
+            🤖 <strong>AI Insight:</strong> At ₹10K/month for 10 years at 12% returns, you'll nearly double your investment. Consider stepping up SIP by 10% yearly for ₹46.5L corpus.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Growth Projection</div></div>
+          <div class="chart-wrap chart-h300">
+            <canvas id="scenarioChart"></canvas>
+          </div>
+          <div class="divider"></div>
+          <div class="card-title" style="margin-bottom:12px">📋 Quick Scenarios</div>
+          <div style="display:flex; flex-direction:column; gap:8px">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--bg3); border-radius:8px; cursor:pointer; transition:background 0.2s" onmouseover="this.style.background='var(--card2)'" onmouseout="this.style.background='var(--bg3)'">
+              <span style="font-size:13px">🚗 Take a Car Loan (₹8L, 5 yrs)</span>
+              <span style="color:var(--red); font-size:13px; font-weight:600">-₹16,000/mo</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--bg3); border-radius:8px; cursor:pointer; transition:background 0.2s" onmouseover="this.style.background='var(--card2)'" onmouseout="this.style.background='var(--bg3)'">
+              <span style="font-size:13px">🏠 Home Loan (₹60L, 20 yrs)</span>
+              <span style="color:var(--red); font-size:13px; font-weight:600">-₹48,000/mo</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--bg3); border-radius:8px; cursor:pointer; transition:background 0.2s" onmouseover="this.style.background='var(--card2)'" onmouseout="this.style.background='var(--bg3)'">
+              <span style="font-size:13px">💰 Increase SIP to ₹25K/mo</span>
+              <span style="color:var(--green); font-size:13px; font-weight:600">+₹58L in 10yrs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ INVESTMENTS ═══ -->
+    <div class="page" id="page-investments">
+      <div class="grid-2" style="margin-bottom:20px; align-items:start">
+        <div class="card">
+          <div class="card-header"><div class="card-title">📈 Portfolio Overview</div><span class="tag tag-green">+12.4% YTD</span></div>
+          <div style="text-align:center; padding:16px 0">
+            <div class="nw-big">₹4,82,000</div>
+            <div class="nw-change">▲ ₹52,800 (12.4%) since Jan 2024</div>
+          </div>
+          <div class="chart-wrap chart-h200">
+            <canvas id="portfolioChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Portfolio Allocation</div></div>
+          <div style="display:flex; flex-direction:column; gap:2px; margin-top:8px">
+            <div class="invest-row">
+              <div class="invest-dot" style="background:#3d7fff"></div>
+              <div class="invest-name">Large Cap MF (HDFC Flexi)</div>
+              <div class="invest-bar"><div class="invest-fill" style="width:100%; background:#3d7fff"></div></div>
+              <div class="invest-pct">40%</div>
+              <div class="invest-val">₹1,92,800</div>
+            </div>
+            <div class="invest-row">
+              <div class="invest-dot" style="background:#00d4aa"></div>
+              <div class="invest-name">Index Fund (Nifty 50)</div>
+              <div class="invest-bar"><div class="invest-fill" style="width:75%; background:#00d4aa"></div></div>
+              <div class="invest-pct">25%</div>
+              <div class="invest-val">₹1,20,500</div>
+            </div>
+            <div class="invest-row">
+              <div class="invest-dot" style="background:#f59e0b"></div>
+              <div class="invest-name">Mid Cap Fund</div>
+              <div class="invest-bar"><div class="invest-fill" style="width:37.5%; background:#f59e0b"></div></div>
+              <div class="invest-pct">15%</div>
+              <div class="invest-val">₹72,300</div>
+            </div>
+            <div class="invest-row">
+              <div class="invest-dot" style="background:#a855f7"></div>
+              <div class="invest-name">Gold ETF</div>
+              <div class="invest-bar"><div class="invest-fill" style="width:25%; background:#a855f7"></div></div>
+              <div class="invest-pct">10%</div>
+              <div class="invest-val">₹48,200</div>
+            </div>
+            <div class="invest-row">
+              <div class="invest-dot" style="background:#22c55e"></div>
+              <div class="invest-name">Fixed Deposits</div>
+              <div class="invest-bar"><div class="invest-fill" style="width:25%; background:#22c55e"></div></div>
+              <div class="invest-pct">10%</div>
+              <div class="invest-val">₹48,200</div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div style="background:rgba(61,127,255,0.06); border:1px solid rgba(61,127,255,0.2); border-radius:10px; padding:14px; font-size:13px; color:var(--text2); line-height:1.6">
+            🤖 <strong>AI Recommendation:</strong> Add 5% allocation to International ETF (like Mirae Asset NYSE FANG+) to diversify currency risk and tap into global growth.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">Active SIPs</div><button class="btn btn-primary" style="font-size:12px; padding:6px 14px">+ Add SIP</button></div>
+        <table class="data-table">
+          <thead><tr><th>Fund Name</th><th>Monthly SIP</th><th>Current Value</th><th>Returns</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>HDFC Flexi Cap Fund</td><td>₹5,000</td><td>₹1,92,800</td><td style="color:var(--green)">+18.2%</td><td><span class="tag tag-green">Active</span></td></tr>
+            <tr><td>Nippon Nifty 50 Index</td><td>₹3,000</td><td>₹1,20,500</td><td style="color:var(--green)">+14.6%</td><td><span class="tag tag-green">Active</span></td></tr>
+            <tr><td>Axis Mid Cap Fund</td><td>₹2,000</td><td>₹72,300</td><td style="color:var(--green)">+22.1%</td><td><span class="tag tag-green">Active</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══ RISK ANALYZER ═══ -->
+    <div class="page" id="page-risk">
+      <div class="grid-2" style="align-items:start; margin-bottom:20px">
+        <div class="card">
+          <div class="card-header"><div class="card-title">⚖️ Risk Profile</div></div>
+          <div class="risk-meter">
+            <svg viewBox="0 0 200 120" class="risk-arc">
+              <defs>
+                <linearGradient id="riskGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:#22c55e"/>
+                  <stop offset="50%" style="stop-color:#f59e0b"/>
+                  <stop offset="100%" style="stop-color:#ef4444"/>
+                </linearGradient>
+              </defs>
+              <path d="M 10 110 A 90 90 0 0 1 190 110" fill="none" stroke="var(--border)" stroke-width="12" stroke-linecap="round"/>
+              <path d="M 10 110 A 90 90 0 0 1 190 110" fill="none" stroke="url(#riskGrad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="100"/>
+              <circle cx="135" cy="32" r="6" fill="white"/>
+              <line x1="100" y1="110" x2="135" y2="38" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <div class="risk-labels">
+              <span>Conservative</span>
+              <span>Moderate</span>
+              <span>Aggressive</span>
+            </div>
+            <div class="risk-level" style="color:var(--yellow); margin-top:12px">Moderate-Aggressive</div>
+            <div style="font-size:13px; color:var(--text2); margin-top:6px">Risk Score: 65 / 100</div>
+          </div>
+
+          <div class="divider"></div>
+          <div style="font-size:13px; color:var(--text2); line-height:1.6; padding:0 8px">
+            Based on your age (22), income stability, and investment horizon (10+ years), you can comfortably take a moderate-to-aggressive approach.
+          </div>
+
+          <div class="divider"></div>
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div><div class="factor-label" style="font-size:12px; color:var(--text3); margin-bottom:4px">Age Factor (22 yrs)</div><div class="factor-bar"><div class="factor-fill" style="width:88%"></div></div></div>
+            <div><div class="factor-label" style="font-size:12px; color:var(--text3); margin-bottom:4px">Income Stability</div><div class="factor-bar"><div class="factor-fill" style="width:75%"></div></div></div>
+            <div><div class="factor-label" style="font-size:12px; color:var(--text3); margin-bottom:4px">Investment Horizon</div><div class="factor-bar"><div class="factor-fill" style="width:90%"></div></div></div>
+            <div><div class="factor-label" style="font-size:12px; color:var(--text3); margin-bottom:4px">Emergency Fund</div><div class="factor-bar"><div class="factor-fill" style="width:40%; background:linear-gradient(90deg,var(--red),var(--yellow))"></div></div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Recommended Allocation</div></div>
+          <div class="chart-wrap chart-h250">
+            <canvas id="riskAllocationChart"></canvas>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px">
+            <div style="background:var(--bg3); border-radius:10px; padding:12px">
+              <div style="font-size:11px; color:var(--text3); margin-bottom:4px">EQUITY</div>
+              <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:20px; color:var(--accent)">70%</div>
+              <div style="font-size:12px; color:var(--text2)">High growth potential</div>
+            </div>
+            <div style="background:var(--bg3); border-radius:10px; padding:12p
