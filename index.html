@@ -56,12 +56,12 @@ body {
   overflow-x: hidden;
 }
 h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
-
+ 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg2); }
 ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
-
+ 
 /* ── LAYOUT ── */
 .app { display: flex; min-height: 100vh; }
 .sidebar {
@@ -72,7 +72,7 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
   transition: transform 0.3s;
 }
 .main { margin-left: 240px; flex: 1; min-height: 100vh; }
-
+ 
 /* ── SIDEBAR ── */
 .sidebar-logo {
   padding: 24px 20px 20px;
@@ -89,7 +89,7 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
 .logo-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; }
 .logo-text span { color: var(--accent); }
 .logo-sub { font-size: 10px; color: var(--text3); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
-
+ 
 .sidebar-nav { padding: 16px 12px; flex: 1; overflow-y: auto; }
 .nav-section-title {
   font-size: 10px; color: var(--text3); letter-spacing: 1.5px;
@@ -108,7 +108,7 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
   margin-left: auto; background: var(--accent4); color: white;
   font-size: 10px; padding: 1px 6px; border-radius: 20px; font-weight: 600;
 }
-
+ 
 .sidebar-footer {
   padding: 16px 12px; border-top: 1px solid var(--border);
 }
@@ -124,7 +124,7 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
 }
 .user-name { font-size: 13px; font-weight: 600; }
 .user-plan { font-size: 11px; color: var(--accent2); }
-
+ 
 /* ── TOP BAR ── */
 .topbar {
   height: 64px; background: var(--bg2); border-bottom: 1px solid var(--border);
@@ -150,12 +150,12 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
   justify-content: center; cursor: pointer; transition: all 0.2s; font-size: 16px;
 }
 .icon-btn:hover { background: var(--card2); }
-
+ 
 /* ── PAGES ── */
 .page { display: none; padding: 28px; animation: fadeIn 0.3s ease; }
 .page.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
+ 
 /* ── CARDS ── */
 .card {
   background: var(--card); border: 1px solid var(--border);
@@ -165,13 +165,13 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
 .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
 .card-title { font-family: 'Syne',sans-serif; font-weight: 700; font-size: 15px; }
 .card-subtitle { font-size: 12px; color: var(--text3); margin-top: 2px; }
-
+ 
 /* ── GRID ── */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
 .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
 .grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
-
+ 
 /* ── STAT CARDS ── */
 .stat-card {
   background: var(--card); border: 1px solid var(--border);
@@ -202,7 +202,7 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
 .stat-icon.yellow { background: rgba(245,158,11,0.12); }
 .stat-icon.red { background: rgba(239,68,68,0.12); }
 .stat-icon.purple { background: rgba(168,85,247,0.12); }
-
+ 
 /* ── LANDING PAGE ── */
 #page-landing {
   display: block;
@@ -237,7 +237,7 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
 .hero-sub { font-size: 18px; color: var(--text2); max-width: 600px; margin: 0 auto 36px; line-height: 1.7; }
 .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .btn-xl { padding: 14px 32px; font-size: 16px; border-radius: 12px; }
-
+ 
 .features-grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
   padding: 0 48px 60px; max-width: 1100px; margin: 0 auto;
@@ -251,13 +251,13 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
 .feature-icon { font-size: 28px; margin-bottom: 14px; }
 .feature-title { font-family: 'Syne',sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
 .feature-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
-
+ 
 /* ── CHART CONTAINERS ── */
 .chart-wrap { position: relative; }
 .chart-h200 { height: 200px; }
 .chart-h250 { height: 250px; }
 .chart-h300 { height: 300px; }
-
+ 
 /* ── HEALTH SCORE ── */
 .health-score-ring {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -276,14 +276,14 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
 }
 .score-badge.good { background: rgba(34,197,94,0.15); color: var(--green); }
 .score-badge.avg { background: rgba(245,158,11,0.15); color: var(--yellow); }
-
+ 
 .score-factors { display: flex; flex-direction: column; gap: 10px; }
 .factor-row { display: flex; align-items: center; gap: 10px; }
 .factor-label { font-size: 12px; color: var(--text2); width: 140px; flex-shrink: 0; }
 .factor-bar { flex: 1; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
 .factor-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
 .factor-val { font-size: 12px; font-weight: 600; width: 30px; text-align: right; }
-
+ 
 /* ── AI CHAT ── */
 #page-chat { padding: 0; display: none; height: calc(100vh - 64px); }
 #page-chat.active { display: flex; flex-direction: column; }
@@ -333,7 +333,7 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
   transition: all 0.2s;
 }
 .quick-prompt:hover { border-color: var(--accent); color: var(--accent); }
-
+ 
 /* ── TYPING INDICATOR ── */
 .typing-dots { display: flex; gap: 4px; align-items: center; padding: 4px 0; }
 .typing-dots span {
@@ -346,7 +346,7 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
   0%,60%,100% { transform: translateY(0); opacity: 0.4; }
   30% { transform: translateY(-6px); opacity: 1; }
 }
-
+ 
 /* ── ALERTS ── */
 .alert-item {
   display: flex; gap: 14px; padding: 14px 18px;
@@ -364,18 +364,18 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
 .alert-title { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
 .alert-desc { font-size: 12px; color: var(--text2); }
 .alert-time { font-size: 11px; color: var(--text3); white-space: nowrap; }
-
+ 
 /* ── TAGS ── */
 .tag { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
 .tag-blue { background: rgba(61,127,255,0.12); color: var(--accent); }
 .tag-green { background: rgba(34,197,94,0.12); color: var(--green); }
 .tag-yellow { background: rgba(245,158,11,0.12); color: var(--yellow); }
 .tag-red { background: rgba(239,68,68,0.12); color: var(--red); }
-
+ 
 /* ── PROGRESS ── */
 .progress-bar { height: 8px; background: var(--bg3); border-radius: 4px; overflow: hidden; margin-top: 6px; }
 .progress-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
-
+ 
 /* ── TABLE ── */
 .data-table { width: 100%; border-collapse: collapse; }
 .data-table th {
@@ -386,7 +386,7 @@ h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
 .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table tr:hover td { background: var(--card2); }
-
+ 
 /* ── SCENARIO SLIDERS ── */
 .slider-group { margin-bottom: 20px; }
 .slider-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
@@ -401,13 +401,13 @@ input[type=range]::-webkit-slider-thumb {
   background: var(--accent); cursor: pointer; border: 2px solid var(--bg2);
   box-shadow: 0 2px 8px rgba(61,127,255,0.4);
 }
-
+ 
 /* ── RISK ANALYZER ── */
 .risk-meter { position: relative; padding: 20px; text-align: center; }
 .risk-arc { width: 200px; height: 100px; margin: 0 auto; }
 .risk-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); margin-top: 8px; }
 .risk-level { font-family: 'Syne',sans-serif; font-weight: 800; font-size: 24px; }
-
+ 
 /* ── CATEGORY PILLS ── */
 .cat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
 .cat-item {
@@ -418,10 +418,10 @@ input[type=range]::-webkit-slider-thumb {
 .cat-emoji { font-size: 22px; margin-bottom: 6px; }
 .cat-name { font-size: 12px; color: var(--text2); font-weight: 500; }
 .cat-amount { font-family: 'Syne',sans-serif; font-size: 14px; font-weight: 700; }
-
+ 
 /* ── DIVIDER ── */
 .divider { height: 1px; background: var(--border); margin: 20px 0; }
-
+ 
 /* ── INVESTMENT BARS ── */
 .invest-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
 .invest-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -430,10 +430,10 @@ input[type=range]::-webkit-slider-thumb {
 .invest-fill { height: 100%; border-radius: 3px; }
 .invest-pct { font-size: 13px; font-weight: 600; width: 35px; text-align: right; }
 .invest-val { font-size: 12px; color: var(--text3); width: 80px; text-align: right; }
-
+ 
 /* ── SCROLL ── */
 .scroll-y { overflow-y: auto; }
-
+ 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .sidebar { transform: translateX(-100%); }
@@ -450,14 +450,14 @@ input[type=range]::-webkit-slider-thumb {
   .page { padding: 16px; }
   .topbar { padding: 0 16px; }
 }
-
+ 
 /* ── MOBILE MENU OVERLAY ── */
 .sidebar-overlay {
   display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
   z-index: 99;
 }
 .sidebar-overlay.show { display: block; }
-
+ 
 /* ── ONBOARDING ── */
 .onboard-step { display: none; }
 .onboard-step.active { display: block; animation: fadeIn 0.4s ease; }
@@ -477,7 +477,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 .form-input:focus { border-color: var(--accent); }
 select.form-input option { background: var(--card); }
-
+ 
 /* ── REPORTS ── */
 .report-card {
   background: var(--card); border: 1px solid var(--border);
@@ -491,7 +491,7 @@ select.form-input option { background: var(--card); }
 .report-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
 .report-meta { font-size: 12px; color: var(--text3); }
 .report-arrow { color: var(--text3); font-size: 18px; }
-
+ 
 /* ── IDENTITY / DEEPFAKE ── */
 .id-verify-box {
   border: 2px dashed var(--border2); border-radius: 16px;
@@ -505,12 +505,12 @@ select.form-input option { background: var(--card); }
   color: var(--green); padding: 8px 16px; border-radius: 20px; font-weight: 600;
   font-size: 14px;
 }
-
+ 
 /* ── SPARKLINE ── */
 .sparkline-wrap { display: flex; align-items: flex-end; gap: 3px; height: 40px; }
 .spark-bar { flex: 1; background: var(--accent); border-radius: 2px 2px 0 0; opacity: 0.7; transition: opacity 0.2s; }
 .spark-bar:hover { opacity: 1; }
-
+ 
 /* ── TOOLTIP ── */
 .tooltip-wrap { position: relative; display: inline-block; }
 .tooltip-text {
@@ -521,16 +521,16 @@ select.form-input option { background: var(--card); }
   box-shadow: var(--shadow);
 }
 .tooltip-wrap:hover .tooltip-text { visibility: visible; }
-
+ 
 /* ── NETWORTH SECTION ── */
 .nw-big { font-family: 'Syne',sans-serif; font-size: 38px; font-weight: 800; }
 .nw-change { color: var(--green); font-size: 14px; font-weight: 600; }
-
+ 
 /* ── PILL TABS ── */
 .pill-tabs { display: flex; gap: 6px; background: var(--bg3); padding: 4px; border-radius: 10px; width: fit-content; }
 .pill-tab { padding: 7px 16px; border-radius: 7px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; color: var(--text2); }
 .pill-tab.active { background: var(--card); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-
+ 
 /* ── GOAL TRACKER ── */
 .goal-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
 .goal-item:last-child { border-bottom: none; }
@@ -540,7 +540,7 @@ select.form-input option { background: var(--card); }
 .goal-progress { height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
 .goal-fill { height: 100%; border-radius: 3px; }
 .goal-meta { font-size: 12px; color: var(--text3); }
-
+ 
 /* ── LOADING SHIMMER ── */
 @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
 .shimmer {
@@ -548,18 +548,18 @@ select.form-input option { background: var(--card); }
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
-
+ 
 /* ── GLOW EFFECTS ── */
 .glow-blue { box-shadow: 0 0 20px rgba(61,127,255,0.2); }
 .glow-green { box-shadow: 0 0 20px rgba(34,197,94,0.2); }
-
+ 
 /* LANDING */
 #page-landing .main-content { margin-left: 0; }
 .landing-wrapper { margin-left: 0 !important; }
 </style>
 </head>
 <body>
-
+ 
 <!-- LANDING PAGE (fullscreen, no sidebar) -->
 <div id="landing-wrapper">
   <nav class="landing-nav">
@@ -573,7 +573,7 @@ select.form-input option { background: var(--card); }
     <button class="btn btn-ghost" onclick="setTheme()">🌗 Theme</button>
     <button class="btn btn-primary btn-xl" onclick="goToApp('dashboard')">Launch App →</button>
   </nav>
-
+ 
   <div class="landing-hero">
     <div class="hero-badge">✦ AI-Powered Personal Finance</div>
     <h1 class="hero-title">Your Money,<br>Intelligently Understood</h1>
@@ -583,7 +583,7 @@ select.form-input option { background: var(--card); }
       <button class="btn btn-ghost btn-xl" onclick="goToApp('dashboard')">View Demo Dashboard →</button>
     </div>
   </div>
-
+ 
   <div class="features-grid">
     <div class="feature-card">
       <div class="feature-icon">🤖</div>
@@ -617,11 +617,11 @@ select.form-input option { background: var(--card); }
     </div>
   </div>
 </div>
-
+ 
 <!-- APP WRAPPER -->
 <div id="app-wrapper" style="display:none;">
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-
+ 
   <div class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <div class="logo-mark">
@@ -632,7 +632,7 @@ select.form-input option { background: var(--card); }
         </div>
       </div>
     </div>
-
+ 
     <nav class="sidebar-nav">
       <div class="nav-section-title">Overview</div>
       <div class="nav-item active" onclick="showPage('dashboard',this)">
@@ -644,7 +644,7 @@ select.form-input option { background: var(--card); }
       <div class="nav-item" onclick="showPage('health',this)">
         <span class="nav-icon">🏆</span> Health Score
       </div>
-
+ 
       <div class="nav-section-title">Planning</div>
       <div class="nav-item" onclick="showPage('insights',this)">
         <span class="nav-icon">💡</span> Insights
@@ -658,7 +658,7 @@ select.form-input option { background: var(--card); }
       <div class="nav-item" onclick="showPage('risk',this)">
         <span class="nav-icon">⚖️</span> Risk Analyzer
       </div>
-
+ 
       <div class="nav-section-title">Management</div>
       <div class="nav-item" onclick="showPage('alerts',this)">
         <span class="nav-icon">🔔</span> Alerts
@@ -671,7 +671,7 @@ select.form-input option { background: var(--card); }
         <span class="nav-icon">🛡️</span> Identity
       </div>
     </nav>
-
+ 
     <div class="sidebar-footer">
       <div class="user-card">
         <div class="user-avatar">SR</div>
@@ -682,7 +682,7 @@ select.form-input option { background: var(--card); }
       </div>
     </div>
   </div>
-
+ 
   <div class="main">
     <div class="topbar">
       <button class="icon-btn" id="menuBtn" onclick="toggleSidebar()" style="display:none;">☰</button>
@@ -695,7 +695,7 @@ select.form-input option { background: var(--card); }
         <button class="btn btn-primary" onclick="showPage('chat',null)">🤖 Ask AI</button>
       </div>
     </div>
-
+ 
     <!-- ═══ DASHBOARD ═══ -->
     <div class="page active" id="page-dashboard">
       <!-- Stats Row -->
@@ -725,7 +725,7 @@ select.form-input option { background: var(--card); }
           <div class="stat-change up">▲ 12.4% YTD</div>
         </div>
       </div>
-
+ 
       <!-- Charts Row -->
       <div class="grid-2" style="margin-bottom:20px">
         <!-- Net Worth Timeline -->
@@ -745,7 +745,7 @@ select.form-input option { background: var(--card); }
             <canvas id="netWorthChart"></canvas>
           </div>
         </div>
-
+ 
         <!-- Expense Breakdown -->
         <div class="card">
           <div class="card-header">
@@ -770,7 +770,7 @@ select.form-input option { background: var(--card); }
           </div>
         </div>
       </div>
-
+ 
       <!-- Second Row -->
       <div class="grid-3" style="margin-bottom:20px">
         <!-- Monthly Income vs Expenses -->
@@ -785,7 +785,7 @@ select.form-input option { background: var(--card); }
             <canvas id="incomeExpenseChart"></canvas>
           </div>
         </div>
-
+ 
         <!-- Health Score Mini -->
         <div class="card" style="cursor:pointer" onclick="showPage('health',null)">
           <div class="card-header">
@@ -805,7 +805,7 @@ select.form-input option { background: var(--card); }
           <div style="font-size:12px; color:var(--text3); text-align:center; margin-top:8px">Tap for detailed breakdown →</div>
         </div>
       </div>
-
+ 
       <!-- Goals & AI Tip Row -->
       <div class="grid-2">
         <!-- Goals -->
@@ -845,7 +845,7 @@ select.form-input option { background: var(--card); }
             <div class="goal-progress"><div class="goal-fill" style="width:81%; background:var(--green)"></div></div>
           </div>
         </div>
-
+ 
         <!-- AI Weekly Tip -->
         <div class="card" style="background: linear-gradient(135deg, rgba(61,127,255,0.08), rgba(0,212,170,0.05)); border-color: rgba(61,127,255,0.25);">
           <div class="card-header">
@@ -879,7 +879,7 @@ select.form-input option { background: var(--card); }
         </div>
       </div>
     </div>
-
+ 
     <!-- ═══ AI CHAT ═══ -->
     <div class="page" id="page-chat">
       <div class="chat-header">
@@ -921,7 +921,7 @@ select.form-input option { background: var(--card); }
         </div>
       </div>
     </div>
-
+ 
     <!-- ═══ HEALTH SCORE ═══ -->
     <div class="page" id="page-health">
       <div class="grid-2" style="margin-bottom:20px; align-items:start">
@@ -947,7 +947,7 @@ select.form-input option { background: var(--card); }
             </p>
           </div>
         </div>
-
+ 
         <div class="card">
           <div class="card-header"><div class="card-title">Score Breakdown</div></div>
           <div class="score-factors" style="padding:8px 0">
@@ -995,7 +995,7 @@ select.form-input option { background: var(--card); }
           </div>
         </div>
       </div>
-
+ 
       <div class="card">
         <div class="card-header"><div class="card-title">Score History</div><div class="card-subtitle">Last 6 months</div></div>
         <div class="chart-wrap chart-h200">
@@ -1003,7 +1003,7 @@ select.form-input option { background: var(--card); }
         </div>
       </div>
     </div>
-
+ 
     <!-- ═══ INSIGHTS ═══ -->
     <div class="page" id="page-insights">
       <div class="grid-2" style="margin-bottom:20px">
@@ -1045,14 +1045,14 @@ select.form-input option { background: var(--card); }
           </div>
         </div>
       </div>
-
+ 
       <div class="card" style="margin-bottom:20px">
         <div class="card-header"><div class="card-title">Spending Trends (6 Months)</div></div>
         <div class="chart-wrap chart-h250">
           <canvas id="spendingTrendChart"></canvas>
         </div>
       </div>
-
+ 
       <div class="card">
         <div class="card-header"><div class="card-title">Recent Transactions</div><button class="btn btn-ghost" style="font-size:12px; padding:4px 10px">View All</button></div>
         <table class="data-table">
@@ -1067,14 +1067,14 @@ select.form-input option { background: var(--card); }
         </table>
       </div>
     </div>
-
+ 
     <!-- ═══ SCENARIO SIMULATOR ═══ -->
     <div class="page" id="page-scenarios">
       <div class="grid-2" style="align-items:start">
         <div class="card">
           <div class="card-header"><div class="card-title">🔮 Scenario Simulator</div><span class="tag tag-blue">AI Powered</span></div>
           <p style="font-size:13px; color:var(--text2); margin-bottom:20px; line-height:1.6">Adjust variables to see how they impact your financial future. All projections are personalized to your current profile.</p>
-
+ 
           <div class="slider-group">
             <div class="slider-label">
               <div class="slider-name">Monthly SIP Investment</div>
@@ -1082,7 +1082,7 @@ select.form-input option { background: var(--card); }
             </div>
             <input type="range" min="1000" max="50000" value="10000" step="500" oninput="updateScenario('sipVal','₹',this.value,true);updateScenarioChart()">
           </div>
-
+ 
           <div class="slider-group">
             <div class="slider-label">
               <div class="slider-name">Investment Duration (Years)</div>
@@ -1090,7 +1090,7 @@ select.form-input option { background: var(--card); }
             </div>
             <input type="range" min="1" max="30" value="10" step="1" oninput="document.getElementById('durationVal').innerText=this.value+' yrs';updateScenarioChart()">
           </div>
-
+ 
           <div class="slider-group">
             <div class="slider-label">
               <div class="slider-name">Expected Annual Return</div>
@@ -1098,7 +1098,7 @@ select.form-input option { background: var(--card); }
             </div>
             <input type="range" min="4" max="25" value="12" step="0.5" oninput="document.getElementById('returnVal').innerText=this.value+'%';updateScenarioChart()">
           </div>
-
+ 
           <div class="slider-group">
             <div class="slider-label">
               <div class="slider-name">Salary Growth (Annual)</div>
@@ -1106,9 +1106,9 @@ select.form-input option { background: var(--card); }
             </div>
             <input type="range" min="0" max="30" value="10" step="1" oninput="document.getElementById('salaryVal').innerText=this.value+'%';updateScenarioChart()">
           </div>
-
+ 
           <div class="divider"></div>
-
+ 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
             <div style="background:var(--bg3); border-radius:12px; padding:16px; text-align:center">
               <div style="font-size:12px; color:var(--text3); margin-bottom:6px">TOTAL INVESTED</div>
@@ -1123,7 +1123,7 @@ select.form-input option { background: var(--card); }
             🤖 <strong>AI Insight:</strong> At ₹10K/month for 10 years at 12% returns, you'll nearly double your investment. Consider stepping up SIP by 10% yearly for ₹46.5L corpus.
           </div>
         </div>
-
+ 
         <div class="card">
           <div class="card-header"><div class="card-title">Growth Projection</div></div>
           <div class="chart-wrap chart-h300">
@@ -1148,7 +1148,7 @@ select.form-input option { background: var(--card); }
         </div>
       </div>
     </div>
-
+ 
     <!-- ═══ INVESTMENTS ═══ -->
     <div class="page" id="page-investments">
       <div class="grid-2" style="margin-bottom:20px; align-items:start">
@@ -1207,7 +1207,7 @@ select.form-input option { background: var(--card); }
           </div>
         </div>
       </div>
-
+ 
       <div class="card">
         <div class="card-header"><div class="card-title">Active SIPs</div><button class="btn btn-primary" style="font-size:12px; padding:6px 14px">+ Add SIP</button></div>
         <table class="data-table">
@@ -1220,7 +1220,7 @@ select.form-input option { background: var(--card); }
         </table>
       </div>
     </div>
-
+ 
     <!-- ═══ RISK ANALYZER ═══ -->
     <div class="page" id="page-risk">
       <div class="grid-2" style="align-items:start; margin-bottom:20px">
@@ -1248,12 +1248,12 @@ select.form-input option { background: var(--card); }
             <div class="risk-level" style="color:var(--yellow); margin-top:12px">Moderate-Aggressive</div>
             <div style="font-size:13px; color:var(--text2); margin-top:6px">Risk Score: 65 / 100</div>
           </div>
-
+ 
           <div class="divider"></div>
           <div style="font-size:13px; color:var(--text2); line-height:1.6; padding:0 8px">
             Based on your age (22), income stability, and investment horizon (10+ years), you can comfortably take a moderate-to-aggressive approach.
           </div>
-
+ 
           <div class="divider"></div>
           <div style="display:flex; flex-direction:column; gap:10px">
             <div><div class="factor-label" style="font-size:12px; color:var(--text3); margin-bottom:4px">Age Factor (22 yrs)</div><div class="factor-bar"><div class="factor-fill" style="width:88%"></div></div></div>
@@ -1262,7 +1262,7 @@ select.form-input option { background: var(--card); }
             <div><div class="factor-label" style="font-size:12px; color:var(--text3); margin-bottom:4px">Emergency Fund</div><div class="factor-bar"><div class="factor-fill" style="width:40%; background:linear-gradient(90deg,var(--red),var(--yellow))"></div></div></div>
           </div>
         </div>
-
+ 
         <div class="card">
           <div class="card-header"><div class="card-title">Recommended Allocation</div></div>
           <div class="chart-wrap chart-h250">
@@ -1274,4 +1274,811 @@ select.form-input option { background: var(--card); }
               <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:20px; color:var(--accent)">70%</div>
               <div style="font-size:12px; color:var(--text2)">High growth potential</div>
             </div>
-            <div style="background:var(--bg3); border-radius:10px; padding:12p
+            <div style="background:var(--bg3); border-radius:10px; padding:12px">
+              <div style="font-size:11px; color:var(--text3); margin-bottom:4px">DEBT + GOLD</div>
+              <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:20px; color:var(--yellow)">30%</div>
+              <div style="font-size:12px; color:var(--text2)">Stability & hedge</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- ═══ ALERTS ═══ -->
+    <div class="page" id="page-alerts">
+      <div class="grid-2" style="align-items:start">
+        <div>
+          <div class="card" style="margin-bottom:20px">
+            <div class="card-header">
+              <div class="card-title">🔔 Smart Alerts</div>
+              <span class="tag tag-red">4 New</span>
+            </div>
+ 
+            <div class="alert-item" style="border-color:rgba(245,158,11,0.3)">
+              <div class="alert-icon warn">🍔</div>
+              <div class="alert-text">
+                <div class="alert-title">Food spending up 35%</div>
+                <div class="alert-desc">₹12,500 this month vs ₹9,200 average. You've exceeded your food budget by ₹3,300.</div>
+              </div>
+              <div class="alert-time">2h ago</div>
+            </div>
+ 
+            <div class="alert-item" style="border-color:rgba(61,127,255,0.3)">
+              <div class="alert-icon info">📱</div>
+              <div class="alert-text">
+                <div class="alert-title">Save ₹8,000 by reviewing subscriptions</div>
+                <div class="alert-desc">You have 6 active subscriptions totaling ₹3,400/month. Cancel 2 unused ones.</div>
+              </div>
+              <div class="alert-time">1d ago</div>
+            </div>
+ 
+            <div class="alert-item" style="border-color:rgba(239,68,68,0.3)">
+              <div class="alert-icon danger">📉</div>
+              <div class="alert-text">
+                <div class="alert-title">Savings rate dropped this month</div>
+                <div class="alert-desc">38.5% this month vs 44.2% last month. Expenses increased ₹6,800.</div>
+              </div>
+              <div class="alert-time">1d ago</div>
+            </div>
+ 
+            <div class="alert-item" style="border-color:rgba(34,197,94,0.3)">
+              <div class="alert-icon success">📈</div>
+              <div class="alert-text">
+                <div class="alert-title">SIP portfolio crossed ₹4.8 Lakhs!</div>
+                <div class="alert-desc">Your mutual fund portfolio hit a new high. Total returns: +18.4% XIRR.</div>
+              </div>
+              <div class="alert-time">3d ago</div>
+            </div>
+ 
+            <div class="alert-item">
+              <div class="alert-icon info">🎯</div>
+              <div class="alert-text">
+                <div class="alert-title">Goa trip goal almost there!</div>
+                <div class="alert-desc">81% complete. Just ₹6,500 more — you'll hit it next month at current pace.</div>
+              </div>
+              <div class="alert-time">5d ago</div>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="card">
+          <div class="card-header"><div class="card-title">⚙️ Alert Settings</div></div>
+          <div style="display:flex; flex-direction:column; gap:12px">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--bg3); border-radius:10px">
+              <div><div style="font-size:14px; font-weight:500">Budget Exceeded Alerts</div><div style="font-size:12px; color:var(--text3)">When spending crosses category limits</div></div>
+              <div style="width:44px; height:24px; background:var(--green); border-radius:12px; cursor:pointer; position:relative"><div style="width:18px; height:18px; background:white; border-radius:50%; position:absolute; right:3px; top:3px; transition:all 0.2s"></div></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--bg3); border-radius:10px">
+              <div><div style="font-size:14px; font-weight:500">Unusual Transaction Alerts</div><div style="font-size:12px; color:var(--text3)">For transactions above ₹5,000</div></div>
+              <div style="width:44px; height:24px; background:var(--green); border-radius:12px; cursor:pointer; position:relative"><div style="width:18px; height:18px; background:white; border-radius:50%; position:absolute; right:3px; top:3px; transition:all 0.2s"></div></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--bg3); border-radius:10px">
+              <div><div style="font-size:14px; font-weight:500">Goal Progress Updates</div><div style="font-size:12px; color:var(--text3)">Weekly goal achievement reports</div></div>
+              <div style="width:44px; height:24px; background:var(--green); border-radius:12px; cursor:pointer; position:relative"><div style="width:18px; height:18px; background:white; border-radius:50%; position:absolute; right:3px; top:3px; transition:all 0.2s"></div></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--bg3); border-radius:10px">
+              <div><div style="font-size:14px; font-weight:500">Market News</div><div style="font-size:12px; color:var(--text3)">Major market moves affecting portfolio</div></div>
+              <div style="width:44px; height:24px; background:var(--border); border-radius:12px; cursor:pointer; position:relative"><div style="width:18px; height:18px; background:white; border-radius:50%; position:absolute; left:3px; top:3px; transition:all 0.2s"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- ═══ REPORTS ═══ -->
+    <div class="page" id="page-reports">
+      <div class="grid-2" style="margin-bottom:20px; align-items:start">
+        <div>
+          <div class="card" style="margin-bottom:20px">
+            <div class="card-header"><div class="card-title">📄 Generate Reports</div></div>
+            <div class="report-card">
+              <div class="report-icon" style="background:rgba(61,127,255,0.12)">📊</div>
+              <div class="report-info">
+                <div class="report-title">Monthly Financial Summary</div>
+                <div class="report-meta">March 2025 • Auto-generated by AI</div>
+              </div>
+              <div class="report-arrow">→</div>
+            </div>
+            <div class="report-card">
+              <div class="report-icon" style="background:rgba(34,197,94,0.12)">📈</div>
+              <div class="report-info">
+                <div class="report-title">Investment Performance Report</div>
+                <div class="report-meta">Q1 2025 • Portfolio Analysis</div>
+              </div>
+              <div class="report-arrow">→</div>
+            </div>
+            <div class="report-card">
+              <div class="report-icon" style="background:rgba(245,158,11,0.12)">🎯</div>
+              <div class="report-info">
+                <div class="report-title">Spending Trends Analysis</div>
+                <div class="report-meta">Last 6 months • Category Breakdown</div>
+              </div>
+              <div class="report-arrow">→</div>
+            </div>
+            <div class="report-card">
+              <div class="report-icon" style="background:rgba(168,85,247,0.12)">🏆</div>
+              <div class="report-info">
+                <div class="report-title">Annual Financial Review</div>
+                <div class="report-meta">FY 2024-25 • Tax Planning Included</div>
+              </div>
+              <div class="report-arrow">→</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">March 2025 Summary</div><button class="btn btn-primary" style="font-size:12px; padding:6px 14px">↓ Export PDF</button></div>
+          <div style="display:flex; flex-direction:column; gap:12px">
+            <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border)">
+              <span style="color:var(--text2); font-size:14px">Total Income</span>
+              <span style="font-weight:700; color:var(--green)">₹95,000</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border)">
+              <span style="color:var(--text2); font-size:14px">Total Expenses</span>
+              <span style="font-weight:700; color:var(--red)">₹58,400</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border)">
+              <span style="color:var(--text2); font-size:14px">Net Savings</span>
+              <span style="font-weight:700; color:var(--accent)">₹36,600</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border)">
+              <span style="color:var(--text2); font-size:14px">Savings Rate</span>
+              <span style="font-weight:700; color:var(--green)">38.5%</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border)">
+              <span style="color:var(--text2); font-size:14px">SIP Invested</span>
+              <span style="font-weight:700; color:var(--accent)">₹10,000</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:10px 0">
+              <span style="color:var(--text2); font-size:14px">Health Score</span>
+              <span style="font-weight:700; color:var(--green)">76 / 100 ↑4</span>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div style="background:rgba(61,127,255,0.06); border:1px solid rgba(61,127,255,0.2); border-radius:10px; padding:14px; font-size:13px; color:var(--text2); line-height:1.6">
+            🤖 <strong>AI Summary:</strong> Strong savings month! Your 38.5% savings rate is above the recommended 30%. Main concern: food budget exceeded by ₹3,300. Invest the excess in your SIP to maximize compounding.
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- ═══ IDENTITY (Deepfake-Safe) ═══ -->
+    <div class="page" id="page-identity">
+      <div class="grid-2" style="align-items:start">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">🛡️ Identity Verification</div>
+              <div class="card-subtitle">Deepfake-safe authentication</div>
+            </div>
+            <div class="verified-badge">✓ Verified</div>
+          </div>
+ 
+          <div style="display:flex; gap:12px; margin-bottom:20px">
+            <div style="flex:1; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); border-radius:12px; padding:16px; text-align:center">
+              <div style="font-size:24px; margin-bottom:8px">✅</div>
+              <div style="font-size:12px; font-weight:600; color:var(--green)">Face Verified</div>
+              <div style="font-size:11px; color:var(--text3); margin-top:2px">Last: Today 9:15 AM</div>
+            </div>
+            <div style="flex:1; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); border-radius:12px; padding:16px; text-align:center">
+              <div style="font-size:24px; margin-bottom:8px">👁️</div>
+              <div style="font-size:12px; font-weight:600; color:var(--green)">Liveness Passed</div>
+              <div style="font-size:11px; color:var(--text3); margin-top:2px">Blink test ✓</div>
+            </div>
+            <div style="flex:1; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); border-radius:12px; padding:16px; text-align:center">
+              <div style="font-size:24px; margin-bottom:8px">🤖</div>
+              <div style="font-size:12px; font-weight:600; color:var(--green)">Deepfake: None</div>
+              <div style="font-size:11px; color:var(--text3); margin-top:2px">Confidence: 99.2%</div>
+            </div>
+          </div>
+ 
+          <div class="id-verify-box" onclick="simulateVerify(this)">
+            <div style="font-size:48px; margin-bottom:16px">📷</div>
+            <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; margin-bottom:8px">Re-verify Identity</div>
+            <div style="font-size:13px; color:var(--text2); margin-bottom:16px">Required for large transactions (>₹1 Lakh)</div>
+            <button class="btn btn-primary">Start Verification →</button>
+          </div>
+        </div>
+ 
+        <div class="card">
+          <div class="card-header"><div class="card-title">Security Settings</div></div>
+          <div style="display:flex; flex-direction:column; gap:14px">
+            <div style="display:flex; gap:14px; align-items:center; padding:14px; background:var(--bg3); border-radius:10px">
+              <div style="font-size:22px">🔐</div>
+              <div style="flex:1">
+                <div style="font-size:14px; font-weight:600; margin-bottom:2px">Biometric for Transactions</div>
+                <div style="font-size:12px; color:var(--text3)">Face scan required for payments >₹10K</div>
+              </div>
+              <span class="tag tag-green">ON</span>
+            </div>
+            <div style="display:flex; gap:14px; align-items:center; padding:14px; background:var(--bg3); border-radius:10px">
+              <div style="font-size:22px">📱</div>
+              <div style="flex:1">
+                <div style="font-size:14px; font-weight:600; margin-bottom:2px">2-Factor Authentication</div>
+                <div style="font-size:12px; color:var(--text3)">SMS OTP + App notification</div>
+              </div>
+              <span class="tag tag-green">ON</span>
+            </div>
+            <div style="display:flex; gap:14px; align-items:center; padding:14px; background:var(--bg3); border-radius:10px">
+              <div style="font-size:22px">🌐</div>
+              <div style="flex:1">
+                <div style="font-size:14px; font-weight:600; margin-bottom:2px">Deepfake Detection</div>
+                <div style="font-size:12px; color:var(--text3)">AI model v3.2 — Updated today</div>
+              </div>
+              <span class="tag tag-green">ON</span>
+            </div>
+            <div style="display:flex; gap:14px; align-items:center; padding:14px; background:var(--bg3); border-radius:10px">
+              <div style="font-size:22px">📍</div>
+              <div style="flex:1">
+                <div style="font-size:14px; font-weight:600; margin-bottom:2px">Geo-fencing Alerts</div>
+                <div style="font-size:12px; color:var(--text3)">Alert on transactions from new locations</div>
+              </div>
+              <span class="tag tag-yellow">OFF</span>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="card-title" style="margin-bottom:12px; font-size:14px">Recent Auth Events</div>
+          <table class="data-table">
+            <thead><tr><th>Event</th><th>Time</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Face Login</td><td>Today 9:15 AM</td><td><span class="tag tag-green">✓ Pass</span></td></tr>
+              <tr><td>Large Transfer Auth</td><td>Yesterday</td><td><span class="tag tag-green">✓ Pass</span></td></tr>
+              <tr><td>Unknown Device Login</td><td>Mar 12</td><td><span class="tag tag-red">✗ Blocked</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- ═══ ONBOARDING ═══ -->
+    <div class="page" id="page-onboarding">
+      <div style="max-width:500px; margin:0 auto; padding:40px 0">
+        <div class="step-dots">
+          <div class="step-dot active" id="dot-1"></div>
+          <div class="step-dot" id="dot-2"></div>
+          <div class="step-dot" id="dot-3"></div>
+          <div class="step-dot" id="dot-4"></div>
+        </div>
+ 
+        <div class="card">
+          <div class="onboard-step active" id="step-1">
+            <div class="onboard-icon">👋</div>
+            <div class="onboard-title">Welcome to FinSight AI</div>
+            <div class="onboard-sub">Your personal AI financial advisor. Let's set up your profile to get personalized insights.</div>
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-input" placeholder="Enter your name" value="Sravss">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Age</label>
+              <input type="number" class="form-input" placeholder="Your age" value="22">
+            </div>
+            <button class="btn btn-primary" style="width:100%; justify-content:center; padding:14px" onclick="nextStep(2)">Continue →</button>
+          </div>
+          <div class="onboard-step" id="step-2">
+            <div class="onboard-icon">💰</div>
+            <div class="onboard-title">Income & Expenses</div>
+            <div class="onboard-sub">Help us understand your financial situation for personalized recommendations.</div>
+            <div class="form-group">
+              <label class="form-label">Monthly Income (₹)</label>
+              <input type="number" class="form-input" placeholder="e.g. 95000" value="95000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Monthly Expenses (₹)</label>
+              <input type="number" class="form-input" placeholder="e.g. 58000" value="58400">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Primary Goal</label>
+              <select class="form-input">
+                <option>Build Emergency Fund</option>
+                <option>Grow Investments</option>
+                <option>Buy a Home</option>
+                <option>Save for Travel</option>
+                <option>Retire Early</option>
+              </select>
+            </div>
+            <div style="display:flex; gap:10px">
+              <button class="btn btn-ghost" style="flex:1; justify-content:center; padding:14px" onclick="nextStep(1)">← Back</button>
+              <button class="btn btn-primary" style="flex:2; justify-content:center; padding:14px" onclick="nextStep(3)">Continue →</button>
+            </div>
+          </div>
+ 
+          <div class="onboard-step" id="step-3">
+            <div class="onboard-icon">⚖️</div>
+            <div class="onboard-title">Risk Tolerance</div>
+            <div class="onboard-sub">This helps us suggest the right investments for you.</div>
+            <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:24px">
+              <div style="padding:14px; border:2px solid var(--border); border-radius:10px; cursor:pointer; transition:all 0.2s" onclick="selectRisk(this,'Conservative')" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="if(!this.classList.contains('selected'))this.style.borderColor='var(--border)'">
+                <div style="font-weight:600; margin-bottom:4px">🛡️ Conservative</div>
+                <div style="font-size:12px; color:var(--text2)">Low risk, stable returns. FDs, debt funds, gold.</div>
+              </div>
+              <div style="padding:14px; border:2px solid var(--accent); border-radius:10px; cursor:pointer; transition:all 0.2s; background:rgba(61,127,255,0.06)" onclick="selectRisk(this,'Moderate')">
+                <div style="font-weight:600; margin-bottom:4px">⚖️ Moderate</div>
+                <div style="font-size:12px; color:var(--text2)">Balanced risk. Mix of equity, debt, and gold.</div>
+              </div>
+              <div style="padding:14px; border:2px solid var(--border); border-radius:10px; cursor:pointer; transition:all 0.2s" onclick="selectRisk(this,'Aggressive')" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="if(!this.classList.contains('selected'))this.style.borderColor='var(--border)'">
+                <div style="font-weight:600; margin-bottom:4px">🚀 Aggressive</div>
+                <div style="font-size:12px; color:var(--text2)">High risk, high growth. Mid/small caps, international funds.</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:10px">
+              <button class="btn btn-ghost" style="flex:1; justify-content:center; padding:14px" onclick="nextStep(2)">← Back</button>
+              <button class="btn btn-primary" style="flex:2; justify-content:center; padding:14px" onclick="nextStep(4)">Continue →</button>
+            </div>
+          </div>
+ 
+          <div class="onboard-step" id="step-4">
+            <div class="onboard-icon">🎉</div>
+            <div class="onboard-title">You're all set!</div>
+            <div class="onboard-sub">FinSight AI has analyzed your profile and is ready to give you personalized financial intelligence.</div>
+            <div style="background:var(--bg3); border-radius:12px; padding:16px; margin-bottom:24px">
+              <div style="display:flex; justify-content:space-between; margin-bottom:10px"><span style="color:var(--text2); font-size:14px">Health Score</span><span style="font-weight:700; color:var(--green)">76 / 100</span></div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:10px"><span style="color:var(--text2); font-size:14px">Savings Rate</span><span style="font-weight:700; color:var(--accent)">38.5%</span></div>
+              <div style="display:flex; justify-content:space-between"><span style="color:var(--text2); font-size:14px">AI Recommendations</span><span style="font-weight:700; color:var(--yellow)">5 Ready</span></div>
+            </div>
+            <button class="btn btn-primary" style="width:100%; justify-content:center; padding:14px" onclick="goToApp('dashboard')">Go to Dashboard 🚀</button>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+  </div><!-- end .main -->
+</div><!-- end #app-wrapper -->
+ 
+<script>
+// ── USER DATA CONTEXT ──
+const USER_CONTEXT = `
+You are FinSight AI, an expert personal finance assistant. You are currently helping a user named Sravss who has these financial details:
+- Monthly Income: ₹95,000
+- Monthly Expenses: ₹58,400 (Housing ₹18K, Food ₹12.5K, Transport ₹6.8K, Shopping ₹9.2K, Subscriptions ₹3.4K, Others ₹8.5K)
+- Monthly Savings: ₹36,600 (38.5% savings rate)
+- Net Worth: ₹8.4 Lakhs
+- SIP Investments: ₹10,000/month in mutual funds
+- Portfolio Value: ₹4.82 Lakhs (HDFC Flexi Cap 40%, Nifty 50 Index 25%, Mid Cap 15%, Gold ETF 10%, FD 10%)
+- Emergency Fund: 40% complete (₹2.28L of ₹5.7L target)
+- Financial Health Score: 76/100 (Good)
+- Age: 22 years, IT student at Vasavi College of Engineering, Hyderabad
+- Goals: Emergency Fund (40%), Laptop Fund (56%), Goa Trip (81%)
+- Risk Profile: Moderate-Aggressive
+ 
+Give personalized, actionable financial advice. Use Indian Rupee (₹) and format numbers in Indian numbering system (Lakhs, Crores). Keep responses concise, helpful, and actionable. Add relevant emojis. When suggesting amounts, be specific to their income level.
+`;
+ 
+// ── THEME ──
+function setTheme() {
+  const html = document.documentElement;
+  html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+  setTimeout(initCharts, 100);
+}
+ 
+// ── NAVIGATION ──
+function showPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const page = document.getElementById('page-' + id);
+  if (page) page.classList.add('active');
+  if (el) el.classList.add('active');
+  else {
+    document.querySelectorAll('.nav-item').forEach(n => {
+      if (n.textContent.toLowerCase().includes(id.substring(0,4).toLowerCase())) n.classList.add('active');
+    });
+  }
+  const titles = { dashboard:'Dashboard', chat:'AI Assistant', health:'Financial Health', insights:'Insights', scenarios:'Scenario Simulator', investments:'Investments', risk:'Risk Analyzer', alerts:'Alerts', reports:'Reports', identity:'Identity & Security', onboarding:'Setup' };
+  document.getElementById('topbarTitle').textContent = titles[id] || id;
+  document.getElementById('topbarSub').textContent = id === 'chat' ? 'Ask anything about your finances' : 'Welcome back, Sravss 👋';
+  closeSidebar();
+}
+ 
+function goToApp(page) {
+  document.getElementById('landing-wrapper').style.display = 'none';
+  document.getElementById('app-wrapper').style.display = 'block';
+  showPage(page, null);
+  setTimeout(initCharts, 200);
+}
+ 
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('show');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('show');
+}
+ 
+// ── RESPONSIVE MENU ──
+function checkResponsive() {
+  const btn = document.getElementById('menuBtn');
+  btn.style.display = window.innerWidth <= 900 ? 'flex' : 'none';
+}
+window.addEventListener('resize', checkResponsive);
+checkResponsive();
+ 
+// ── CHARTS ──
+let charts = {};
+function getStyle(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+ 
+function destroyChart(id) { if (charts[id]) { charts[id].destroy(); delete charts[id]; } }
+ 
+function initCharts() {
+  const isDark = document.documentElement.dataset.theme !== 'light';
+  const textColor = isDark ? '#8a9bbf' : '#3d5278';
+  const gridColor = isDark ? 'rgba(30,45,71,0.8)' : 'rgba(208,218,240,0.8)';
+ 
+  Chart.defaults.color = textColor;
+  Chart.defaults.borderColor = gridColor;
+  Chart.defaults.font.family = 'DM Sans';
+ 
+  // Net Worth
+  destroyChart('netWorth');
+  const nwCtx = document.getElementById('netWorthChart');
+  if (nwCtx) {
+    charts['netWorth'] = new Chart(nwCtx, {
+      type: 'line',
+      data: {
+        labels: ['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'],
+        datasets: [{
+          label: 'Net Worth',
+          data: [420000,450000,470000,490000,520000,545000,570000,605000,640000,680000,730000,840000],
+          borderColor: '#3d7fff',
+          backgroundColor: 'rgba(61,127,255,0.08)',
+          fill: true,
+          tension: 0.4,
+          pointRadius: 3,
+          pointBackgroundColor: '#3d7fff',
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { grid: { color: gridColor }, ticks: { callback: v => '₹' + (v/100000).toFixed(1) + 'L' } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+  }
+ 
+  // Expense Pie
+  destroyChart('expensePie');
+  const epCtx = document.getElementById('expensePieChart');
+  if (epCtx) {
+    charts['expensePie'] = new Chart(epCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Housing','Food','Transport','Shopping','Subscriptions','Others'],
+        datasets: [{ data: [31,21,12,16,6,14], backgroundColor: ['#3d7fff','#00d4aa','#f59e0b','#a855f7','#ef4444','#22c55e'], borderWidth: 0, hoverOffset: 6 }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, cutout: '65%' }
+    });
+  }
+ 
+  // Income vs Expense
+  destroyChart('incomeExpense');
+  const ieCtx = document.getElementById('incomeExpenseChart');
+  if (ieCtx) {
+    charts['incomeExpense'] = new Chart(ieCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Oct','Nov','Dec','Jan','Feb','Mar'],
+        datasets: [
+          { label: 'Income', data: [82000,85000,88000,90000,92000,95000], backgroundColor: 'rgba(61,127,255,0.8)', borderRadius: 6 },
+          { label: 'Expenses', data: [56000,52000,60000,54000,51000,58400], backgroundColor: 'rgba(0,212,170,0.6)', borderRadius: 6 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'top' } },
+        scales: {
+          y: { grid: { color: gridColor }, ticks: { callback: v => '₹' + v/1000 + 'K' } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+  }
+ 
+  // Health Score Donut (Dashboard)
+  destroyChart('healthDonut');
+  const hdCtx = document.getElementById('healthDonutDash');
+  if (hdCtx) {
+    charts['healthDonut'] = new Chart(hdCtx, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [76, 24],
+          backgroundColor: ['#22c55e', isDark ? '#1e2d47' : '#d0daf0'],
+          borderWidth: 0
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, cutout: '72%' }
+    });
+  }
+ 
+  // Health Score Ring (Health Page)
+  destroyChart('healthRing');
+  const hrCtx = document.getElementById('healthScoreRing');
+  if (hrCtx) {
+    charts['healthRing'] = new Chart(hrCtx, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [76, 24],
+          backgroundColor: ['#22c55e', isDark ? '#1e2d47' : '#d0daf0'],
+          borderWidth: 0
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, cutout: '72%' }
+    });
+  }
+ 
+  // Health History
+  destroyChart('healthHistory');
+  const hhCtx = document.getElementById('healthHistoryChart');
+  if (hhCtx) {
+    charts['healthHistory'] = new Chart(hhCtx, {
+      type: 'line',
+      data: {
+        labels: ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
+        datasets: [{
+          label: 'Health Score',
+          data: [62, 65, 68, 70, 72, 76],
+          borderColor: '#22c55e',
+          backgroundColor: 'rgba(34,197,94,0.1)',
+          fill: true,
+          tension: 0.4,
+          pointRadius: 5,
+          pointBackgroundColor: '#22c55e',
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { min: 50, max: 100, grid: { color: gridColor } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+  }
+ 
+  // Spending Trend
+  destroyChart('spendingTrend');
+  const stCtx = document.getElementById('spendingTrendChart');
+  if (stCtx) {
+    charts['spendingTrend'] = new Chart(stCtx, {
+      type: 'line',
+      data: {
+        labels: ['Oct','Nov','Dec','Jan','Feb','Mar'],
+        datasets: [
+          { label: 'Food', data: [9800,9200,10500,9600,9200,12500], borderColor: '#f59e0b', tension: 0.4, pointRadius: 3 },
+          { label: 'Shopping', data: [6200,4800,8800,5400,5200,9200], borderColor: '#a855f7', tension: 0.4, pointRadius: 3 },
+          { label: 'Transport', data: [6500,6200,6800,6400,6600,6800], borderColor: '#3d7fff', tension: 0.4, pointRadius: 3 },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'top' } },
+        scales: { y: { grid: { color: gridColor }, ticks: { callback: v => '₹' + v/1000 + 'K' } }, x: { grid: { display: false } } }
+      }
+    });
+  }
+ 
+  // Scenario Chart
+  destroyChart('scenario');
+  const scCtx = document.getElementById('scenarioChart');
+  if (scCtx) {
+    const years = Array.from({length: 11}, (_, i) => 2025 + i);
+    const invested = years.map((_,i) => i * 10000 * 12);
+    const growth = years.map((_,i) => {
+      if (i === 0) return 0;
+      let v = 0;
+      for (let m = 1; m <= i*12; m++) { v = (v + 10000) * (1 + 0.12/12); }
+      return Math.round(v);
+    });
+    charts['scenario'] = new Chart(scCtx, {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [
+          { label: 'Total Invested', data: invested, borderColor: '#3d7fff', fill: false, tension: 0.1, borderDash: [5,5], pointRadius: 3 },
+          { label: 'Projected Value', data: growth, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.1)', fill: true, tension: 0.4, pointRadius: 3 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'top' } },
+        scales: { y: { grid: { color: gridColor }, ticks: { callback: v => '₹' + (v/100000).toFixed(1) + 'L' } }, x: { grid: { display: false } } }
+      }
+    });
+  }
+ 
+  // Portfolio Chart
+  destroyChart('portfolio');
+  const pcCtx = document.getElementById('portfolioChart');
+  if (pcCtx) {
+    charts['portfolio'] = new Chart(pcCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Mar\'25'],
+        datasets: [{
+          label: 'Portfolio Value',
+          data: [200000,220000,240000,260000,280000,300000,330000,360000,390000,420000,450000,480000,482000],
+          borderColor: '#00d4aa', backgroundColor: 'rgba(0,212,170,0.08)',
+          fill: true, tension: 0.4, pointRadius: 2
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { y: { grid: { color: gridColor }, ticks: { callback: v => '₹' + (v/100000).toFixed(1) + 'L' } }, x: { grid: { display: false } } }
+      }
+    });
+  }
+ 
+  // Risk Allocation
+  destroyChart('riskAlloc');
+  const raCtx = document.getElementById('riskAllocationChart');
+  if (raCtx) {
+    charts['riskAlloc'] = new Chart(raCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Large Cap', 'Mid/Small Cap', 'International', 'Gold', 'Debt/FD'],
+        datasets: [{ data: [40,20,10,10,20], backgroundColor: ['#3d7fff','#f59e0b','#a855f7','#ef4444','#22c55e'], borderWidth: 0, hoverOffset: 4 }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'right', labels: { padding: 12, boxWidth: 12 } } },
+        cutout: '55%'
+      }
+    });
+  }
+}
+ 
+// ── SCENARIO UPDATE ──
+function updateScenario(id, prefix, val, format) {
+  document.getElementById(id).innerText = format ? prefix + Number(val).toLocaleString('en-IN') : prefix + val;
+}
+ 
+function updateScenarioChart() {
+  if (!charts['scenario']) return;
+  const sip = parseInt(document.querySelector('#page-scenarios input[type=range]:nth-child(1)').value) || 10000;
+  const yrs = parseInt(document.querySelector('#page-scenarios input[type=range]:nth-child(2)').value) || 10;
+  const ret = parseFloat(document.querySelector('#page-scenarios input[type=range]:nth-child(3)').value) / 100 || 0.12;
+ 
+  const years = Array.from({length: yrs + 1}, (_, i) => 2025 + i);
+  const invested = years.map((_,i) => i * sip * 12);
+  const growth = years.map((_,i) => {
+    if (i === 0) return 0;
+    let v = 0;
+    for (let m = 1; m <= i * 12; m++) { v = (v + sip) * (1 + ret/12); }
+    return Math.round(v);
+  });
+ 
+  charts['scenario'].data.labels = years;
+  charts['scenario'].data.datasets[0].data = invested;
+  charts['scenario'].data.datasets[1].data = growth;
+  charts['scenario'].update();
+ 
+  const totalInvested = sip * 12 * yrs;
+  const projectedVal = growth[growth.length - 1];
+  document.getElementById('totalInvested').textContent = '₹' + (totalInvested/100000).toFixed(1) + 'L';
+  document.getElementById('projectedVal').textContent = '₹' + (projectedVal/100000).toFixed(1) + 'L';
+}
+ 
+// ── AI CHAT ──
+const chatHistory = [];
+ 
+async function sendChat() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = ''; input.style.height = 'auto';
+  appendMessage('user', msg);
+  const typing = appendTyping();
+  chatHistory.push({ role: 'user', content: msg });
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: USER_CONTEXT,
+        messages: chatHistory
+      })
+    });
+    const data = await resp.json();
+    typing.remove();
+    const text = data.content?.[0]?.text || "I'm having trouble connecting. Please try again.";
+    chatHistory.push({ role: 'assistant', content: text });
+    appendMessage('ai', text);
+  } catch (e) {
+    typing.remove();
+    appendMessage('ai', '⚠️ Connection error. Please check your API key or try again.');
+  }
+}
+ 
+function appendMessage(role, text) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = `chat-bubble ${role}`;
+  const time = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  div.innerHTML = `<div class="bubble-content">${text.replace(/\n/g,'<br>')}</div><div class="bubble-meta">${role === 'user' ? 'You' : 'FinSight AI'} • ${time}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+ 
+function appendTyping() {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-bubble ai';
+  div.innerHTML = `<div class="bubble-content"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+ 
+function sendQuick(text) {
+  document.getElementById('chatInput').value = text;
+  sendChat();
+}
+ 
+// ── ONBOARDING ──
+let currentStep = 1;
+function nextStep(n) {
+  document.getElementById('step-' + currentStep).classList.remove('active');
+  document.getElementById('dot-' + currentStep).classList.remove('active');
+  currentStep = n;
+  document.getElementById('step-' + n).classList.add('active');
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('dot-' + i).classList.toggle('active', i <= n);
+  }
+}
+ 
+function selectRisk(el, val) {
+  document.querySelectorAll('#step-3 [onclick^="selectRisk"]').forEach(e => {
+    e.style.borderColor = 'var(--border)';
+    e.style.background = 'transparent';
+    e.classList.remove('selected');
+  });
+  el.style.borderColor = 'var(--accent)';
+  el.style.background = 'rgba(61,127,255,0.06)';
+  el.classList.add('selected');
+}
+ 
+// ── IDENTITY VERIFY SIMULATION ──
+function simulateVerify(box) {
+  box.innerHTML = `
+    <div style="font-size:48px; margin-bottom:16px">📡</div>
+    <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; margin-bottom:8px">Scanning...</div>
+    <div style="font-size:13px; color:var(--text2)">Running deepfake detection AI...</div>
+  `;
+  setTimeout(() => {
+    box.innerHTML = `
+      <div style="font-size:48px; margin-bottom:16px">✅</div>
+      <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; margin-bottom:8px; color:var(--green)">Identity Verified!</div>
+      <div style="font-size:13px; color:var(--text2)">Liveness: ✓ | Deepfake: None | Confidence: 99.4%</div>
+    `;
+  }, 2500);
+}
+ 
+// ── PILL TABS ──
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('pill-tab')) {
+    e.target.closest('.pill-tabs').querySelectorAll('.pill-tab').forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+  }
+});
+ 
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  // Start on landing page
+});
+</script>
+</body>
+</html>
+ 
+ 
